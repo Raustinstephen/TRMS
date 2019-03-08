@@ -30,7 +30,7 @@ public class ConnFactory {
 		}
 		try {
 			conn= DriverManager.getConnection
-("jdbc:oracle:thin:@mydb.c27h8edwkndg.us-east-2.rds.amazonaws.com:1521:ORCL","jdonlevy","Uconnhusky_22");
+					("jdbc:oracle:thin:@pega21119.c5uhkt5fsphe.us-east-2.rds.amazonaws.com:1521:ORCL","RichardStephen","Revature");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
