@@ -44,7 +44,6 @@ public class LoginServlet extends HttpServlet {
 		try {
 			id = ldi.login(request.getParameter("username"),request.getParameter("password"));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(id);

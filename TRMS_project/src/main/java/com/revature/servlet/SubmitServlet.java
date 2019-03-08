@@ -1,7 +1,6 @@
 package com.revature.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.ReimburstReq;
+import com.revature.daoimpl.SubmitFormDaoImpl;
 
 /**
  * Servlet implementation class SubmitServlet
@@ -48,7 +48,8 @@ public class SubmitServlet extends HttpServlet {
 		if(req == null) {
 			System.out.println("nooo");
 		}else {
-			System.out.println(req.toString());		
+			SubmitFormDaoImpl sfdi = new SubmitFormDaoImpl();
+			sfdi.submitForm(req, (Integer)request.getAttribute("EMP_ID"));
 		}
 		 response.setContentType("text/plain");
 		 response.setCharacterEncoding("UTF-8");
