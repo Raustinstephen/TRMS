@@ -10,14 +10,16 @@ public class ReimburstReq {
 	private String eventCost;
 	private String gradeFormat;
 	private String eventType;
+	private String hoursMissed;
 	
 	
 	
 	public ReimburstReq() {
 		super();
 	}
+	
 	public ReimburstReq(String eventName, String address, String city, String state, String eventDesc,
-			String justification, String eventCost, String gradeFormat, String eventType) {
+			String justification, String eventCost, String gradeFormat, String eventType, String hoursMissed) {
 		super();
 		this.eventName = eventName;
 		this.address = address;
@@ -28,7 +30,9 @@ public class ReimburstReq {
 		this.eventCost = eventCost;
 		this.gradeFormat = gradeFormat;
 		this.eventType = eventType;
+		this.hoursMissed = hoursMissed;
 	}
+
 	public String getEventName() {
 		return eventName;
 	}
@@ -83,11 +87,18 @@ public class ReimburstReq {
 	public void setEventType(String eventType) {
 		this.eventType = eventType;
 	}
+	
+	public String getHoursMissed() {
+		return hoursMissed;
+	}
+	public void setHoursMissed(String hoursMissed) {
+		this.hoursMissed = hoursMissed;
+	}
 	@Override
 	public String toString() {
 		return "ReimburstReq [eventName=" + eventName + ", address=" + address + ", city=" + city + ", state=" + state
 				+ ", eventDesc=" + eventDesc + ", justification=" + justification + ", eventCost=" + eventCost
-				+ ", gradeFormat=" + gradeFormat + ", eventType=" + eventType + "]";
+				+ ", gradeFormat=" + gradeFormat + ", eventType=" + eventType + ", hoursMissed=" + hoursMissed + "]";
 	}
 	
 
