@@ -40,7 +40,6 @@ public class SubmitServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		ReimburstReq req = null;
-		System.out.println(request.getSession().getAttribute("EMP_ID"));
 		try{
 			req=mapper.readValue(request.getInputStream(),ReimburstReq.class);
 		}catch(JsonParseException e) {
