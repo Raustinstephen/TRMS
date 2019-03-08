@@ -47,11 +47,11 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sess.setAttribute("EMP_ID", id);
-        //response.setContentType("text/html");
-        
-        
-        request.getRequestDispatcher("home.html").forward(request, response);  
+		System.out.println(id);
+		if(id != 0) {
+			sess.setAttribute("EMP_ID", id);        
+	        request.getRequestDispatcher("home.html").forward(request, response); 
+		} 
 	}
 
 }
