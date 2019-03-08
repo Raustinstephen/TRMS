@@ -48,9 +48,12 @@ public class SubmitServlet extends HttpServlet {
 		if(req == null) {
 			System.out.println("nooo");
 		}else {
+			
 			SubmitFormDaoImpl sfdi = new SubmitFormDaoImpl();
+			System.out.println(req.toString());
+			
 			sfdi.submitForm(req, (Integer)request.getAttribute("EMP_ID"));
-		}
+			}
 		 response.setContentType("text/plain");
 		 response.setCharacterEncoding("UTF-8");
 		 response.getWriter().write("wahooooo");

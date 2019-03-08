@@ -22,7 +22,7 @@ public class SubmitFormDaoImpl {
 		call.setString(4, req.getEventName());
 		call.setString(5, req.getEventDesc());
 		call.setString(6, req.getAddress()+req.getCity() + ", " + req.getState());
-		call.setString(7, "0000");
+		call.setString(7, "2019/03/09 9:00:00");
 		call.setString(8, req.getEventCost());
 		call.setString(9, req.getGradeFormat());
 		call.execute();
