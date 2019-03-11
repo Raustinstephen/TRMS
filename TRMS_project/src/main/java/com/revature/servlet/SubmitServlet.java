@@ -53,9 +53,9 @@ public class SubmitServlet extends HttpServlet {
 		}else {
 			
 			SubmitFormDaoImpl sfdi = new SubmitFormDaoImpl();
-			System.out.println(req.toString());
+//			System.out.println(req.toString());
 			Parsing parse = new Parsing();
-			System.out.println("EMP ID: " + sess.getAttribute("EMP_ID"));
+//			System.out.println("EMP ID: " + sess.getAttribute("EMP_ID"));
 			
 			//int empID= parse.parsingInt(sess.getAttribute);
 			sfdi.submitForm(req, (Integer) sess.getAttribute("EMP_ID"));
