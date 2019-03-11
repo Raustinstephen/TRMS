@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,8 +50,6 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(id);
 		if(id != 0) {
 			sess.setAttribute("EMP_ID", id);   
-
-			System.out.println(id);
 	        request.getRequestDispatcher("home.html").forward(request, response); 
 		} 
 	}
