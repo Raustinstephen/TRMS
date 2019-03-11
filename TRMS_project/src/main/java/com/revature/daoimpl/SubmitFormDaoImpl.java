@@ -27,7 +27,7 @@ public class SubmitFormDaoImpl {
 		call.setString(6, req.getAddress()+req.getCity() + ", " + req.getState());
 		call.setString(7, "2019/03/09 9:00:00");
 		call.setDouble(8, cost);
-		call.setString(9, req.getGradeFormat());
+		call.setInt(9, 4);
 		call.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

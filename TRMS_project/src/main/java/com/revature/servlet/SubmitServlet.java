@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.ReimburstReq;
 import com.revature.daoimpl.SubmitFormDaoImpl;
+import com.revature.util.Parsing;
 
 /**
  * Servlet implementation class SubmitServlet
@@ -51,8 +52,10 @@ public class SubmitServlet extends HttpServlet {
 			
 			SubmitFormDaoImpl sfdi = new SubmitFormDaoImpl();
 			System.out.println(req.toString());
-			
-			sfdi.submitForm(req, (Integer)request.getAttribute("EMP_ID"));
+			Parsing parse = new Parsing();
+			System.out.println("EMP ID: " + request.getAttribute("EMP_ID"));
+			int empID= parse.parsingInt((String) request.getAttribute("EMP_ID"));
+			sfdi.submitForm(req, 103);
 			}
 		 response.setContentType("text/plain");
 		 response.setCharacterEncoding("UTF-8");

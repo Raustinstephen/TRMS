@@ -48,7 +48,9 @@ public class LoginServlet extends HttpServlet {
 		}
 		System.out.println(id);
 		if(id != 0) {
-			sess.setAttribute("EMP_ID", id);        
+			sess.setAttribute("EMP_ID", id);   
+
+			System.out.println(id);
 	        request.getRequestDispatcher("home.html").forward(request, response); 
 		} 
 	}
