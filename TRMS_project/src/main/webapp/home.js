@@ -108,8 +108,7 @@ $.fn.serializeObject = function () {
 });
  
  $(function() {
-	    $('viewReq').on('click', function(e) {
-	      e.preventDefault();
+	    $('#viewReq').click(function() {
 	      $('#selectPage').remove();
 	      $('#content').append(table);
 	      $.ajax({
