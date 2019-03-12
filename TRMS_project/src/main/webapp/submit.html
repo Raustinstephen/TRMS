@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TRMS login</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body style="background-color:lightblue">
+        <nav class="navbar navbar-dark bg-dark">
+            <span style="color:white;font-size:1.6em">Tuition Reimburstment System</span>
+            <a href="#" class="btn btn-info btn-lg pull-right">
+                    <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+
+        </nav>
+        <div id="content">
+        <div class="card" style="margin:50px 50px 20px 50px">
+            <div class="card-body">
+                <h5 class="card-title" style="text-align:center;font-size:2em">New Reimburstment Request</h5>
+                <form>
+                <div class="form-group">
+                    <label for="f1">Event Name</label>
+                    <input type="text" name="eventName" id="f1">
+                </div>
+                <div class="form-group">
+                    <label for="f2">Event Address</label>
+                    <input type="text" name="address" id="f2">
+                </div>
+                <div class="form-group">
+                    <label for="f3">Event City</label>
+                    <input type="text" name="city" id="f3">
+                </div>
+                <div class="form-group">
+                    <label for="f4">Event State</label>
+                    <input type="text" name="state" id=f4>
+                </div>
+                <div class="form-group">
+                    <label for="f5">Event Description</label>
+                    <input type="text" name="eventDesc" id="f5">
+                </div>
+                <div class="form-group">
+                    <label for="f6">Event Justification</label>
+                    <input type="text" name="justification" id="f6">
+                </div>
+                <div class="form-group">
+                    <label for="f7">Event Cost</label>
+                    <input type="text" name="eventCost" id="f7">  
+                </div>
+                <div class="form-group">
+                    <label for="f8">Grading Format</label>
+                    <select name="gradeFormat" id="f8">
+                        <option value="af">A - F</option>
+                        <option value="passfail">Pass/Fail</option>
+                        <option value="percentage">Percentage</option>
+                        <option value="score">Score</option>
+                        <option value="doesntApply">Does Not Apply</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                        <label for="f9">Grading Format</label>
+                        <select name="eventType id="f9">
+                                <option value="universityCourse">University Course</option>
+                                <option value="seminar">Seminar</option>
+                                <option value="certifactionPreparation">Certification Prepartion</option>
+                                <option value="certification">Certification</option>
+                                <option value="technicalTraining">Technical Training</option>
+                                <option value="other">Other</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                        <label for="f9">Hours of work missed</label>
+                        <input type="text" name="hoursMissed" id="f9">
+                </div>
+
+            
+                <button type="submit" class="btn btn-info float-right" style="margin:20px 20px 0px 0px;width:20%" id="btnLogin">Submit</button>
+                </form>
+            </div>
+        </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="home.js"></script>
+    </body>
+</html>

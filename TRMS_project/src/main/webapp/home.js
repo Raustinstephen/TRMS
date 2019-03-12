@@ -1,6 +1,7 @@
     var formHTML =         
     '<div class="card" style="margin:50px 50px 20px 50px">'
 +    '<div class="card-body">'
++		 '<form id="myForm">'
 +        '<h5 class="card-title" style="text-align:center;font-size:2em">New Reimburstment Request</h5>'
 +        '<div class="form-group">'
 +            '<label for="f1">Event Name</label>'
@@ -42,7 +43,7 @@
 +        '</div>'
 +        '<div class="form-group">'
 +                '<label for="f9">Grading Format</label>'
-+                '<select name="eventType id="f9">'
++                '<select name="eventType" id="f9">'
 +                        '<option value="universityCourse">University Course</option>'
 +                        '<option value="seminar">Seminar</option>'
 +                        '<option value="certifactionPreparation">Certification Prepartion</option>'
@@ -55,7 +56,8 @@
 +                '<label for="f9">Hours of work missed</label>'
 +                '<input type="text" name="hoursMissed" id="f9">'
 +        '</div>' 
-+        '<button type="submit" class="btn btn-info float-right" style="margin:20px 20px 0px 0px;width:20%" id="btnLogin">Submit</button>'
++        '<button type="submit" id="formButton" class="btn btn-info float-right" style="margin:20px 20px 0px 0px;width:20%" id="btnLogin">Submit</button>'
++		 '</form>'
 +    '</div>'
 +'</div>';
 
@@ -63,10 +65,10 @@ var table =
 	'<table class="table">'
 +		'<thead>'
 +			'<tr>'
-+				'<th scope="col">#</th>'
-+				'<th scope="col">First</th>'
-+				'<th scope="col">Last</th>'
-+				'<th scope="col">Handle</th>'
++				'<th scope="col">Event Name</th>'
++				'<th scope="col">Event Type</th>'
++				'<th scope="col">Cost</th>'
++				'<th scope="col">Grade Format</th>'
 +			'</tr>'
 +		'</thead>'
 +		'<tbody>'
@@ -90,12 +92,15 @@ $.fn.serializeObject = function () {
  };
 
  $(function() {
-    $('form').on('submit', function(e) {
+    $('#content').on('submit','#myForm', function(e) {
       e.preventDefault();
+      console.log("in handler");
       var formData = $(this).serializeObject();
+      console.log(JSON.stringify(formData));
       $.ajax({
         type: "POST",
         url: "SubmitServlet",
+        datatype: "json",
         data: JSON.stringify(formData),
         success: function(data){console.log("yayyy");},
         error: function (xhr, ajaxOptions, thrownError) {
@@ -118,7 +123,15 @@ $.fn.serializeObject = function () {
 	            alert(xhr.status);
 	            alert(thrownError);
 	          },
-	        success: function(data){console.log("yayyy");}
+	        success: function(data){
+	        	$("#selectPage").remove();
+	        	
+	        	$.each(data, function(i,element){
+	        		
+	        	});
+	        	
+	        	
+	        }
 	        
 	      });
 	      

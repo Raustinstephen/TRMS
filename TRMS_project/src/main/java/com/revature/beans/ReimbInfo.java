@@ -9,7 +9,7 @@ public class ReimbInfo {
 	private double eventCost;
 	private String gradeFormat;
 	private String justification;
-	private int reimbStatus;
+	private String reimbStatus;
 	private double hoursMissed;
 	private String nextAuthorize;
 	private String timeStamp;
@@ -20,7 +20,7 @@ public class ReimbInfo {
 	private String totalAwarded;
 	
 	public ReimbInfo(String eventName, String eventType, String eventDesc, String location, String eventTime,
-			double eventCost2, String gradeFormat, String justification, int reimbStatus2, double hoursMissed2,
+			double eventCost, String gradeFormat, String justification, int reimbStatus, double hoursMissed,
 			String nextAuthorize, String timeStamp, String firstName, String lastName, String email, String reportsTo,
 			String totalAwarded) {
 		super();
@@ -29,10 +29,28 @@ public class ReimbInfo {
 		this.eventDesc = eventDesc;
 		this.location = location;
 		this.eventTime = eventTime;
-		this.eventCost = eventCost2;
+		this.eventCost = eventCost;
 		this.gradeFormat = gradeFormat;
 		this.justification = justification;
-		this.reimbStatus = reimbStatus;
+		if(reimbStatus == 0) {
+			this.reimbStatus = "Under Review-Direct Supervisor";
+		}else if(reimbStatus == 1) {
+			this.reimbStatus = "Under Review-Department Head";
+		}else if(reimbStatus == 2) {
+			this.reimbStatus = "Under Review-Ben. Coordinator";
+		}else if(reimbStatus == 3) {
+			this.reimbStatus = "Denied by Direct Supervisor";
+		}else if(reimbStatus == 4) {
+			this.reimbStatus = "Denied by Department Head";
+		}else if(reimbStatus == 5) {
+			this.reimbStatus = "Denied by Benefits Coordinator";
+		}else if(reimbStatus == 6){
+			this.reimbStatus = "Denied by Benefits Coordinator";
+		}else if(reimbStatus == 7) {
+			this.reimbStatus = "Withdrawn by Employee";
+		}else if(reimbStatus == 8) {
+			this.reimbStatus = "Approved";
+		}
 		this.hoursMissed = hoursMissed;
 		this.nextAuthorize = nextAuthorize;
 		this.timeStamp = timeStamp;
@@ -106,11 +124,29 @@ public class ReimbInfo {
 	public void setJustification(String justification) {
 		this.justification = justification;
 	}
-	public int getReimbStatus() {
+	public String getReimbStatus() {
 		return reimbStatus;
 	}
 	public void setReimbStatus(int reimbStatus) {
-		this.reimbStatus = reimbStatus;
+		if(reimbStatus == 0) {
+			this.reimbStatus = "Under Review-Direct Supervisor";
+		}else if(reimbStatus == 1) {
+			this.reimbStatus = "Under Review-Department Head";
+		}else if(reimbStatus == 2) {
+			this.reimbStatus = "Under Review-Ben. Coordinator";
+		}else if(reimbStatus == 3) {
+			this.reimbStatus = "Denied by Direct Supervisor";
+		}else if(reimbStatus == 4) {
+			this.reimbStatus = "Denied by Department Head";
+		}else if(reimbStatus == 5) {
+			this.reimbStatus = "Denied by Benefits Coordinator";
+		}else if(reimbStatus == 6){
+			this.reimbStatus = "Denied by Benefits Coordinator";
+		}else if(reimbStatus == 7) {
+			this.reimbStatus = "Withdrawn by Employee";
+		}else if(reimbStatus == 8) {
+			this.reimbStatus = "Approved";
+		}
 	}
 	public double getHoursMissed() {
 		return hoursMissed;
