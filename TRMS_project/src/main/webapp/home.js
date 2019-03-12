@@ -69,6 +69,8 @@ var table =
 +				'<th scope="col">Event Type</th>'
 +				'<th scope="col">Cost</th>'
 +				'<th scope="col">Grade Format</th>'
++				'<th scope="col">Status</th>'
++				'<th scope="col">Date Submitted</th>'
 +			'</tr>'
 +		'</thead>'
 +		'<tbody>'
@@ -124,10 +126,18 @@ $.fn.serializeObject = function () {
 	            alert(thrownError);
 	          },
 	        success: function(data){
+	        	console.log(data);
 	        	$("#selectPage").remove();
 	        	
 	        	$.each(data, function(i,element){
-	        		
+	        		tr = $('<tr/>');
+	                tr.append("<td>" + element.eventName + "</td>");
+	                tr.append("<td>" + element.eventType + "</td>");
+	                tr.append("<td>" + element.eventCost + "</td>");
+	                tr.append("<td>" + element.gradeFormat + "</td>");
+	                tr.append("<td>" + element.reimbStatus + "</td>");
+	                tr.append("<td>" + element.timeStamp + "</td>");
+	                $('table').append(tr);
 	        	});
 	        	
 	        	
