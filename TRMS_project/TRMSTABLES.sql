@@ -8,7 +8,7 @@ CREATE TABLE TRMS_REIMBURST(
     NEXT_AUTHORIZE_ID INTEGER,                /*FK*/
     R_TIMESTAMP DATE
 );
-DROP TABLE TRMS_REIMBURST;
+
 
 CREATE TABLE TRMS_EMPLOYEE(
     EMP_ID INTEGER PRIMARY KEY,                 /*PK*/
@@ -32,13 +32,13 @@ CREATE TABLE TRMS_EVENT(
     EVENT_COST NUMBER(7,2) CHECK (EVENT_COST>0),     /*CHECK POSITIVE*/
     GRADING_FORMAT INTEGER                           /*FK*/
 );
-DROP TABLE TRMS_EVENT;
 
 CREATE TABLE TRMS_DEPT(
     DEPT_ID INTEGER PRIMARY KEY,                    /*PK*/
     DEPT_NAME VARCHAR2(15),             
     DEPT_HEAD INTEGER                               /*FK EMPLOYEES*/
 );
+
 
 CREATE TABLE FILES(
     FILE_ID INTEGER PRIMARY KEY,                    /*PK*/
@@ -151,7 +151,8 @@ END;
 
 
 
-INSERT INTO TRMS_EMPLOYEE values (105,'AUSTIN','STEPHEN','r.austinstephen@gmail.com','password','Underling',200,103,0);
+INSERT INTO TRMS_EMPLOYEE values (103,'AUSTIN','STEPHEN','r.austin@gmail.com','password','Underling',200,103,0);
+INSERT INTO TRMS_EMPLOYEE values (104,'DOn','McCLean','don@gmail.com','password','Underling',200,103,0);
 EXECUTE INSERT_REIMB_REQ (105,'I want to',30.5, 'Basket Weaving', 'Basket Weaving under water', '42 Wallaby Way Queensland Australia', '2019/03/09 09:00:00 PM',78.84,4);
 
 

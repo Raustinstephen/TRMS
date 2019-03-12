@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.revature.beans.ReimbInfo;
 import com.revature.util.ConnFactory;
@@ -11,8 +12,9 @@ import com.revature.util.ConnFactory;
 public class QueryDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
-	public void reimbInfo(int empID) {
+	public ArrayList<ReimbInfo> reimbInfo(int empID) {
 	Connection conn = cf.getConnection();
+	ArrayList<ReimbInfo> ri = new ArrayList<ReimbInfo>();
 	String sql = "SELECT * FROM TRMS_EMPLOYEE WHERE EMPLOYEE_ID="+empID;
 	Statement stmt;
 	try {
@@ -59,20 +61,20 @@ public class QueryDaoImpl {
 								eventCost, gradeFormat, justification, reimbStatus, hoursMissed,
 								nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
 								totalAwarded);
-						
+						ri.add(info);
 						
 					}
+					
 				}
-			
-		
 		}
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
+	return ri;	
 	}
+	
 	public void eventInfo(int eventID) {
 		Connection conn = cf.getConnection();
 		String sql = "SELECT * FROM TRMS_EVENTS WHERE EVENT_ID="+eventID;

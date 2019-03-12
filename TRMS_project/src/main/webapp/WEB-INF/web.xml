@@ -21,4 +21,14 @@
     <servlet-name>SubmitServlet</servlet-name>
     <url-pattern>/SubmitServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewServlet</display-name>
+    <servlet-name>ViewServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewServlet</servlet-name>
+    <url-pattern>/ViewServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
