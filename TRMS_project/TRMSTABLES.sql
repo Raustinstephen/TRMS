@@ -157,36 +157,36 @@ INSERT INTO TRMS_DEPT values (400,'HR',400003);
 INSERT INTO TRMS_DEPT values (500,'General',500182);
 INSERT INTO TRMS_DEPT values (600,'Executive',600001);
 --DEPT HEADS################################################
-INSERT INTO TRMS_EMPLOYEE values (100157,'Regina','George','r.george@dsengineering.com','pinkwednesday','Office Manager',100,1,362.5);
-INSERT INTO TRMS_EMPLOYEE values (200007,'Theodore','Kord','t.kord@dsengineering.com','bluebeetle','IT Manager',200,1,175);
-INSERT INTO TRMS_EMPLOYEE values (300422,'Arthur','Andersen','a.andersen@dsengineering.com','cookthebooks','CFO',300,1,999.99);
-INSERT INTO TRMS_EMPLOYEE values (400003,'Pamela','Poovy','p.poovy@dsengineering.com','sploosh','HR Manager',400,1,350);
-INSERT INTO TRMS_EMPLOYEE values (500182,'Ronald','Swanson','r.swanson@dsengineering.com','donttreadonme','Director',500,1,17.76);
-INSERT INTO TRMS_EMPLOYEE values (600001,'Steve','Wozniak','s.wozniak@dsengineering.com','opensource','President',600,1,0);
+INSERT INTO TRMS_EMPLOYEE values (100157,'Regina','George','r.george@dseng.com','pinkwed','Office Manager',100,1,362.5);
+INSERT INTO TRMS_EMPLOYEE values (200007,'Theodore','Kord','t.kord@dseng.com','bluebeetle','IT Manager',200,1,175);
+INSERT INTO TRMS_EMPLOYEE values (300422,'Arthur','Andersen','a.andersen@dseng.com','cookthebooks','CFO',300,1,999.99);
+INSERT INTO TRMS_EMPLOYEE values (400003,'Pamela','Poovy','p.poovy@dseng.com','sploosh','HR Manager',400,1,350);
+INSERT INTO TRMS_EMPLOYEE values (500182,'Ronald','Swanson','r.swanson@dseng.com','NOTREAD','Director',500,1,17.76);
+INSERT INTO TRMS_EMPLOYEE values (600001,'Steve','Wozniak','s.wozniak@dseng.com','opensource','President',600,1,0);
 --founder/CEO
-INSERT INTO TRMS_EMPLOYEE values (1,'Bruce','Wayne','darkknight@dsengineering.com','IMBATMAN','CEO',600,1,0);
+INSERT INTO TRMS_EMPLOYEE values (1,'Bruce','Wayne','darkknight@dseng.com','IMBATMAN','CEO',600,1,0);
 --Clerical
-INSERT INTO TRMS_EMPLOYEE values (100862,'Cady','Heron','c.heron@dsengineering.com','plastics','Head Secretary',100,100157,322.35);
-INSERT INTO TRMS_EMPLOYEE values (100722,'Gretchen','Wieners','g.wieners@dsengineering.com','sofetch','Office Clerk',100,100862,85.5);
+INSERT INTO TRMS_EMPLOYEE values (100862,'Cady','Heron','c.heron@dseng.com','plastics','Head Secretary',100,100157,322.35);
+INSERT INTO TRMS_EMPLOYEE values (100722,'Gretchen','Wieners','g.wieners@dseng.com','sofetch','Office Clerk',100,100862,85.5);
 --IT
-INSERT INTO TRMS_EMPLOYEE values (200329,'Michael','Carter','m.carter2@dsengineering.com','boostergold','Senior Software Engineer',200,200007,0);
-INSERT INTO TRMS_EMPLOYEE values (200875,'Maxwell','Lord','m.lord@dsengineering.com','diebeetle','Junior Software Engineer',200,200329,0);
+INSERT INTO TRMS_EMPLOYEE values (200329,'Michael','Carter','m.carter2@dseng.com','boostergold','Senior Software Engineer',200,200007,0);
+INSERT INTO TRMS_EMPLOYEE values (200875,'Maxwell','Lord','m.lord@dseng.com','diebeetle','Junior Software Engineer',200,200329,0);
 --Accounting
-INSERT INTO TRMS_EMPLOYEE values (300158,'Kenneth','Lay','k.lay@dsengineering.com','enron','Senior Accountant',300,300422,0);
-INSERT INTO TRMS_EMPLOYEE values (300764,'Jeffrey','Skilling','j.skilling@dsengineering.com','cookthebooks','Bookkeeper',300,300764,0);
+INSERT INTO TRMS_EMPLOYEE values (300158,'Kenneth','Lay','k.lay@dseng.com','enron','Senior Accountant',300,300422,0);
+INSERT INTO TRMS_EMPLOYEE values (300764,'Jeffrey','Skilling','j.skilling@dseng.com','cookthebooks','Bookkeeper',300,300764,0);
 --HR (includes Benefits Coordinator)
-INSERT INTO TRMS_EMPLOYEE values (400097,'Cheryl','Tunt','c.tunt@dsengineering.com','babou','Chief Recruiter',400,400003,0);
-INSERT INTO TRMS_EMPLOYEE values (400103,'Brett','Buckley','b.buckley@dsengineering.com','owthathurt','Recruiter',400,400097,0);
-INSERT INTO TRMS_EMPLOYEE values (400032,'Ray','Gilette','r.gilette@dsengineering.com','bioniclegs','Benefits Coordinator',400,400003,0);
+INSERT INTO TRMS_EMPLOYEE values (400097,'Cheryl','Tunt','c.tunt@dseng.com','babou','Chief Recruiter',400,400003,0);
+INSERT INTO TRMS_EMPLOYEE values (400103,'Brett','Buckley','b.buckley@dseng.com','owthathurt','Recruiter',400,400097,0);
+INSERT INTO TRMS_EMPLOYEE values (400032,'Ray','Gilette','r.gilette@dseng.com','bioniclegs','Benefits Coordinator',400,400003,0);
 --General
-INSERT INTO TRMS_EMPLOYEE values (500383,'Leslie','Knope','l.knope@dsengineering.com','mspresident','Deputy Director',500,500182,0);
-INSERT INTO TRMS_EMPLOYEE values (500875,'April','Ludgate','a.ludgate@dsengineering.com','imnotweird','Intern',500,500383,0);
+INSERT INTO TRMS_EMPLOYEE values (500383,'Leslie','Knope','l.knope@dseng.com','mspresident','Deputy Director',500,500182,0);
+INSERT INTO TRMS_EMPLOYEE values (500875,'April','Ludgate','a.ludgate@dseng.com','imnotweird','Intern',500,500383,0);
 --GRADING FORMAT #################
 INSERT INTO GRADE values (1,'AF');
 INSERT INTO GRADE values (2,'PassFail');
 INSERT INTO GRADE values (3,'Percentage');
 INSERT INTO GRADE values (4,'Score');
-INSERT INTO GRADE values (5,'DoesNotApply');
+INSERT INTO GRADE values (5,'DosntApply');
 --EVENT TYPE TABLE #############################
 INSERT INTO EVENT_TYPE_TABLE values (1,'UniversityCourse');
 INSERT INTO EVENT_TYPE_TABLE values (2,'Seminar');
@@ -195,9 +195,9 @@ INSERT INTO EVENT_TYPE_TABLE values (4,'Certification');
 INSERT INTO EVENT_TYPE_TABLE values (5,'TechnicalTraining');
 INSERT INTO EVENT_TYPE_TABLE values (6,'Other');
 --STATUS TABLE ###################################
-INSERT INTO STATUS values (0,'Under Review by Direct Supervisor');
-INSERT INTO STATUS values (1,'Under Review by Department Head');
-INSERT INTO STATUS values (2,'Under Review by Benefits Coordinator');
+INSERT INTO STATUS values (0,'Under Review-Direct Supervisor');
+INSERT INTO STATUS values (1,'Under Review-Department Head');
+INSERT INTO STATUS values (2,'Under Review-Ben. Coordinator');
 INSERT INTO STATUS values (3,'Denied by Direct Supervisor');
 INSERT INTO STATUS values (4,'Denied by Department Head');
 INSERT INTO STATUS values (5,'Denied by Benefits Coordinator');
@@ -208,8 +208,9 @@ COMMIT;
 
 
 
+
+
+
 INSERT INTO TRMS_EMPLOYEE values (105,'AUSTIN','STEPHEN','r.austinstephen@gmail.com','password','Underling',200,103,0);
 EXECUTE INSERT_REIMB_REQ (105,'I want to',30.5, 'Basket Weaving', 'Basket Weaving under water', '42 Wallaby Way Queensland Australia', '2019/03/09 09:00:00 PM',78.84,4);
-
-
 
