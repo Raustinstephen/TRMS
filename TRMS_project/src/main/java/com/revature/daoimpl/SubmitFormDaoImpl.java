@@ -19,6 +19,7 @@ public class SubmitFormDaoImpl {
 			Parsing parse = new Parsing();
 		double cost = parse.parsingDouble(req.getEventCost());
 		double hours = parse.parsingDouble(req.getHoursMissed());
+		int eventType = parse.parsingInt(req.getEventType());
 		call.setInt(1, EMP_ID);
 		call.setString(2, req.getJustification());
 		call.setDouble(3, hours);
@@ -28,6 +29,7 @@ public class SubmitFormDaoImpl {
 		call.setString(7, "2019/03/09 9:00:00");
 		call.setDouble(8, cost);
 		call.setInt(9, 4);
+		call.setInt(10, eventType);
 		call.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
