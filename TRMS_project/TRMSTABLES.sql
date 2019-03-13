@@ -149,7 +149,7 @@ COMMIT;
 END;
 /
 
-EXECUTE INSERT_REIMB_REQ (500875,'College is good',25,'Intro to Humanities','College class on Humanities','Pawnee Community College','15-MAR-19',350,1,1);
+EXECUTE INSERT_REIMB_REQ (500875,'College is good2',25,'Intro to Humanities2','College class on Humanities2','Pawnee Community College','15-MAR-19',350,1,1);
 EXECUTE INSERT_REIMB_REQ (300764,'Prison sucks',25,'appeal','appealing prison sentence','Prison','18-MAR-19',350,2,3);
 
 --Departments
