@@ -23,10 +23,10 @@
 +            '<label for="f5">Event Description</label>'
 +            '<input type="text" name="eventDesc" id="f5">'
 +        '</div>'
-+        '<div class="form-group">'
+/*+        '<div class="form-group">'
 +            '<label for="f6">Event Justification</label>'
 +            '<input type="text" name="justification" id="f6">'
-+        '</div>'
++        '</div>'*/
 +        '<div class="form-group">'
 +            '<label for="f7">Event Cost</label>'
 +            '<input type="text" name="eventCost" id="f7">'
@@ -65,17 +65,36 @@ var table =
 	'<table class="table">'
 +		'<thead>'
 +			'<tr>'
++				'<th scope="col">Reimburstment ID</th>'
 +				'<th scope="col">Event Name</th>'
 +				'<th scope="col">Event Type</th>'
 +				'<th scope="col">Cost</th>'
 +				'<th scope="col">Grade Format</th>'
 +				'<th scope="col">Status</th>'
 +				'<th scope="col">Date Submitted</th>'
++				'<th scope="col">Grade</th>'
 +			'</tr>'
 +		'</thead>'
 +		'<tbody>'
 +		'</tbody>'
 +	'</table>';
+
+var inputGrade = 
+	'<div id="selectPage" class="card" style="width:20%;height:200px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
+	+    '<div class="card-body">'
+	+		'<form id="gradeForm">'
+	+		'<div class="form-group" style="text-align:center;font-size:1em">'
+	+                '<label for="rn">Reimburstment ID</label>'
+	+                '<input type="text" name="reimbID" id="rn">'
+	+        '</div>' 
+	+		'<div class="form-group" style="text-align:center;font-size:1em">'
+	+                '<label for="gr">Grade</label>'
+	+                '<input type="text" name="grade" id="gr">'
+	+        '</div>' 
+	+        '<button type="submit" id="gradeSubmit" class="btn btn-info float-right">Submit Grade</button>'
+	+		 '</form>'
+	+    '</div>'
+	+'</div>';	
 
 $.fn.serializeObject = function () {
     var o = {};
@@ -113,7 +132,7 @@ $.fn.serializeObject = function () {
       
     });
 });
- 
+// view req handler 
  $(function() {
 	    $('#viewReq').click(function() {
 	      $('#selectPage').remove();
@@ -137,6 +156,7 @@ $.fn.serializeObject = function () {
 	                tr.append("<td>" + element.gradeFormat + "</td>");
 	                tr.append("<td>" + element.reimbStatus + "</td>");
 	                tr.append("<td>" + element.timeStamp + "</td>");
+	                tr.append("<td>" + element.grade + "</td>");
 	                $('table').append(tr);
 	        	});
 	        	
@@ -148,7 +168,68 @@ $.fn.serializeObject = function () {
 	    });
 	});
  
-
+ 
+ 
+ //Enter grade handler
+ $(function() {
+	    $('#addGrade').click(function() {
+	    	console.log('grade clicked')
+	      $('#selectPage').remove();
+	      $('#content').append(table);
+	      $.ajax({
+	        type: "POST",
+	        url: "ViewServlet",
+	        error: function (xhr, ajaxOptions, thrownError) {
+	            alert(xhr.status);
+	            alert(thrownError);
+	          },
+	        success: function(data){
+	        	console.log(data);
+	        	$("#selectPage").remove();
+	        	
+	        	$.each(data, function(i,element){
+	        		tr = $('<tr/>');
+	                tr.append("<td>" + element.eventName + "</td>");
+	                tr.append("<td>" + element.eventType + "</td>");
+	                tr.append("<td>" + element.eventCost + "</td>");
+	                tr.append("<td>" + element.gradeFormat + "</td>");
+	                tr.append("<td>" + element.reimbStatus + "</td>");
+	                tr.append("<td>" + element.timeStamp + "</td>");
+	                tr.append("<td>" + element.grade + "</td>");
+	                $('table').append(tr);
+	                $('#content').append(inputGrade);                
+	        	});        	        	
+	        }       
+	      });    
+	});
+ });
+ 
+ 
+ 
+ //handler for grade submit
+ 
+ $(function() {
+	    $('#content').on('submit','#gradeForm', function(e) {
+	      e.preventDefault();
+	      console.log("in handler");
+	      var formData = $(this).serializeObject();
+	      console.log(JSON.stringify(formData));
+	      $.ajax({
+	        type: "POST",
+	        url: "GradeServlet",
+	        datatype: "json",
+	        data: JSON.stringify(formData),
+	        success: function(data){alert("Grade Updated")},
+	        error: function (xhr, ajaxOptions, thrownError) {
+	            alert(xhr.status);
+	            alert(thrownError);
+	          }
+	      });
+	      
+	    });
+	});
+ 
+//new reimb request handler
 $(function() {
 	$("#newReimburst").click(function(){
 		$("#selectPage").remove();
