@@ -31,4 +31,14 @@
     <servlet-name>ViewServlet</servlet-name>
     <url-pattern>/ViewServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewRequestServlet</display-name>
+    <servlet-name>ViewRequestServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewRequestServlet</servlet-name>
+    <url-pattern>/ViewRequestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
