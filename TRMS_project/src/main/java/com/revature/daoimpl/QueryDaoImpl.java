@@ -40,6 +40,7 @@ public class QueryDaoImpl {
 						double eventCost = rs.getDouble(6);
 						String gradeFormat = rs.getString(7);
 						String eventType = rs.getString(8);
+						int reimbID = rs.getInt(9);
 						int eventID = rs.getInt(11);
 						String justification = rs.getString(12);
 						int reimbStatus = rs.getInt(13);
@@ -49,7 +50,7 @@ public class QueryDaoImpl {
 						
 						//putting everything in the monster bean
 						ReimbInfo info = new ReimbInfo(eventName, eventType, eventDesc, eventLoc, eventTime,
-								eventCost, gradeFormat, justification, reimbStatus, hoursMissed,
+								eventCost, gradeFormat, justification, reimbID, reimbStatus, hoursMissed,
 								nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
 								totalAwarded);
 						ri.add(info);
@@ -95,6 +96,7 @@ public class QueryDaoImpl {
 							double eventCost = rs.getDouble(14);
 							String gradeFormat = rs.getString(15);
 							String eventType = rs.getString(16);
+							int reimbID = rs.getInt(1);
 							int eventID = rs.getInt(3);
 							String justification = rs.getString(4);
 							int reimbStatus = rs.getInt(5);
@@ -104,7 +106,7 @@ public class QueryDaoImpl {
 							
 							//putting everything in the monster bean
 							ReimbInfo info = new ReimbInfo(eventName, eventType, eventDesc, eventLoc, eventTime,
-									eventCost, gradeFormat, justification, reimbStatus, hoursMissed,
+									eventCost, gradeFormat, justification, reimbID, reimbStatus, hoursMissed,
 									nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
 									totalAwarded);
 							ri.add(info);

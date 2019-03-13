@@ -21,17 +21,16 @@ public class SubmitFormDaoImpl {
 		double hours = parse.parsingDouble(req.getHoursMissed());
 		int eventType = parse.parsingInt(req.getEventType());
 		int gradeForm = parse.parsingInt(req.getGradeFormat());
-		System.out.println(eventType + " === " + gradeForm);
 		call.setInt(1, EMP_ID);
-		call.setString(2, req.getJustification());
-		call.setDouble(3, hours);
-		call.setString(4, req.getEventName());
-		call.setString(5, req.getEventDesc());
-		call.setString(6, req.getAddress()+req.getCity() + ", " + req.getState());
-		call.setString(7, "2019/03/09 9:00:00");
-		call.setDouble(8, cost);
-		call.setInt(9, gradeForm);
-		call.setInt(10, eventType);
+		//call.setString(2, req.getJustification());
+		call.setDouble(2, hours);
+		call.setString(3, req.getEventName());
+		call.setString(4, req.getEventDesc());
+		call.setString(5, req.getAddress()+", "+req.getCity() + ", " + req.getState());
+		call.setString(6, "2019/03/09 9:00:00");
+		call.setDouble(7, cost);
+		call.setInt(8, gradeForm);
+		call.setInt(9, eventType);
 		call.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
