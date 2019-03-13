@@ -9,6 +9,7 @@ public class ReimbInfo {
 	private double eventCost;
 	private String gradeFormat;
 	private String justification;
+	private int reimbID;
 	private String reimbStatus;
 	private double hoursMissed;
 	private String nextAuthorize;
@@ -20,7 +21,7 @@ public class ReimbInfo {
 	private String totalAwarded;
 	
 	public ReimbInfo(String eventName, String eventType, String eventDesc, String location, String eventTime,
-			double eventCost, String gradeFormat, String justification, int reimbStatus, double hoursMissed,
+			double eventCost, String gradeFormat, String justification, int reimbID, int reimbStatus, double hoursMissed,
 			String nextAuthorize, String timeStamp, String firstName, String lastName, String email, String reportsTo,
 			String totalAwarded) {
 		super();
@@ -32,6 +33,7 @@ public class ReimbInfo {
 		this.eventCost = eventCost;
 		this.gradeFormat = gradeFormat;
 		this.justification = justification;
+		this.reimbID = reimbID;
 		if(reimbStatus == 0) {
 			this.reimbStatus = "Under Review-Direct Supervisor";
 		}else if(reimbStatus == 1) {
@@ -189,6 +191,17 @@ public class ReimbInfo {
 	}
 	public void setTotalAwarded(String totalAwarded) {
 		this.totalAwarded = totalAwarded;
+	}
+
+	
+	
+
+
+	public int getReimbID() {
+		return reimbID;
+	}
+	public void setReimbID(int reimbID) {
+		this.reimbID = reimbID;
 	}
 
 
