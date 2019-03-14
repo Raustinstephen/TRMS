@@ -19,11 +19,12 @@ public class ReimbInfo {
 	private String email;
 	private String reportsTo;
 	private String totalAwarded;
+	private String grade;
 	
 	public ReimbInfo(String eventName, String eventType, String eventDesc, String location, String eventTime,
 			double eventCost, String gradeFormat, String justification, int reimbID, int reimbStatus, double hoursMissed,
 			String nextAuthorize, String timeStamp, String firstName, String lastName, String email, String reportsTo,
-			String totalAwarded) {
+			String totalAwarded, String grade) {
 		super();
 		this.eventName = eventName;
 		if(eventType.equals("1")) {
@@ -74,6 +75,7 @@ public class ReimbInfo {
 		this.email = email;
 		this.reportsTo = reportsTo;
 		this.totalAwarded = totalAwarded;
+		this.grade = grade;
 	}
 	
 	
@@ -84,6 +86,16 @@ public class ReimbInfo {
 	}
 
 	
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+
 
 	public String getTimeStamp() {
 		return timeStamp;
@@ -220,15 +232,17 @@ public class ReimbInfo {
 
 
 	@Override
+//	public String toString() {
+//		return "ReimbInfo [eventName=" + eventName + ", eventType=" + eventType + ", eventDesc=" + eventDesc
+//				+ ", location=" + location + ", eventTime=" + eventTime + ", eventCost=" + eventCost + ", gradeFormat="
+//				+ gradeFormat + ", justification=" + justification + ", reimbStatus=" + reimbStatus + ", hoursMissed="
+//				+ hoursMissed + ", nextAuthorize=" + nextAuthorize + ", timeStamp=" + timeStamp + ", firstName="
+//				+ firstName + ", lastName=" + lastName + ", email=" + email + ", reportsTo=" + reportsTo
+//				+ ", totalAwarded=" + totalAwarded + "]";
+//	}
 	public String toString() {
-		return "ReimbInfo [eventName=" + eventName + ", eventType=" + eventType + ", eventDesc=" + eventDesc
-				+ ", location=" + location + ", eventTime=" + eventTime + ", eventCost=" + eventCost + ", gradeFormat="
-				+ gradeFormat + ", justification=" + justification + ", reimbStatus=" + reimbStatus + ", hoursMissed="
-				+ hoursMissed + ", nextAuthorize=" + nextAuthorize + ", timeStamp=" + timeStamp + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", reportsTo=" + reportsTo
-				+ ", totalAwarded=" + totalAwarded + "]";
+		return "Grade: "+ grade;
 	}
-
 	
 	
 }

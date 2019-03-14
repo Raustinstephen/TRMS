@@ -42,6 +42,7 @@ public class ViewRequestServlet extends HttpServlet {
 		QueryDaoImpl qdi = new QueryDaoImpl();
 		HttpSession sess = request.getSession();
 		ArrayList<ReimbInfo> ri = qdi.nextApprove((Integer)sess.getAttribute("EMP_ID"));
+		System.out.println(ri.toString());
 		ObjectMapper om = new ObjectMapper();
 		response.setContentType("application/json");
 		om.writeValue(response.getOutputStream(), ri);

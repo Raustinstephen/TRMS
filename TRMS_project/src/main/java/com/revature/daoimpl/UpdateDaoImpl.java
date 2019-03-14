@@ -37,6 +37,7 @@ public class UpdateDaoImpl {
 
 	public void approve(int rid, Integer emp) {
 		Connection conn = cf.getConnection();
+<<<<<<< HEAD
 		String sql = "SELECT REIMBURST_STATUS,NEXT_AUTHORIZE_ID FROM TRMS_REIMBURST WHERE REIMBURST_ID='"+rid+"'";
 		int cur_status = 0;
 		int nextId = 0;
@@ -82,5 +83,10 @@ public class UpdateDaoImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+=======
+		String sql = "SELECT ";
+		//PreparedStatement ps = conn.prepareStatement(sql);
+		
+>>>>>>> a0c7f2bff46fbdf52f61ccd17fc5524c16918843
 	}
 }

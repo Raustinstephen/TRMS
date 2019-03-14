@@ -47,12 +47,13 @@ public class QueryDaoImpl {
 						double hoursMissed = rs.getDouble(14);
 						String nextAuthorize = rs.getString(15);
 						String timeStamp = rs.getString(16);
+						String grade = rs.getString("GRADE_REC");
 						
 						//putting everything in the monster bean
 						ReimbInfo info = new ReimbInfo(eventName, eventType, eventDesc, eventLoc, eventTime,
 								eventCost, gradeFormat, justification, reimbID, reimbStatus, hoursMissed,
 								nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
-								totalAwarded);
+								totalAwarded, grade);
 						ri.add(info);
 						
 					}
@@ -106,14 +107,15 @@ public class QueryDaoImpl {
 							double hoursMissed = rs.getDouble(6);
 							String nextAuthorize = rs.getString(7);
 							String timeStamp = rs.getString(8);
-							
+							String grade = rs.getString(9);
 							//putting everything in the monster bean
 							ReimbInfo info = new ReimbInfo(eventName, eventType, eventDesc, eventLoc, eventTime,
 									eventCost, gradeFormat, justification, reimbID, reimbStatus, hoursMissed,
 									nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
-									totalAwarded);
+									totalAwarded, grade);
 							ri.add(info);
-							
+							System.out.println("Grade: " + info.getGrade());
+							System.out.println("Timestamp: " + info.getTimeStamp());
 						}
 //					}
 			}
