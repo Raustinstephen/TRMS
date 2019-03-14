@@ -99,6 +99,8 @@ var table2 =
 +		'</tbody>'
 +	'</table>';
 
+
+
 var inputGrade = 
 	'<div id="selectPage" class="card" style="width:20%;height:200px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
 	+    '<div class="card-body">'
@@ -112,6 +114,21 @@ var inputGrade =
 	+                '<input type="text" name="grade" id="gr">'
 	+        '</div>' 
 	+        '<button type="submit" id="gradeSubmit" class="btn btn-info float-right">Submit Grade</button>'
+	+		 '</form>'
+	+    '</div>'
+	+'</div>';	
+
+
+var approveDeny = 
+	'<div id="selectPage" class="card" style="width:20%;height:200px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
+	+    '<div class="card-body">'
+	+		'<form id="gradeForm">'
+	+		'<div class="form-group" style="text-align:center;font-size:1em">'
+	+                '<label for="rn">Reimburstment ID</label>'
+	+                '<input type="text" name="reimbID" id="rn">'
+	+        '</div>' 
+	+        '<button type="button" id="approve" class="btn btn-success float-right">Approve</button>'
+	+        '<button type="button" id="deny" class="btn btn-danger float-right">Deny</button>'
 	+		 '</form>'
 	+    '</div>'
 	+'</div>';	
@@ -227,7 +244,7 @@ $.fn.serializeObject = function () {
  });
  
  
- //aprrove button handler
+ //aprroveDeny button handler
  $(function() {
 	    $('#approve').click(function() {
 	      $('#selectPage').remove();
@@ -254,6 +271,7 @@ $.fn.serializeObject = function () {
 	                tr.append("<td>" + element.timeStamp + "</td>");
 	                tr.append("<td>" + element.grade + "</td>");
 	                $('table').append(tr);
+	                $('#content').append(approveDeny);
 	        	});
 	        	
 	        	
