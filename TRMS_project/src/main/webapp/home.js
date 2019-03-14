@@ -265,10 +265,11 @@ $.fn.serializeObject = function () {
 	        		tr = $('<tr/>');
 	        		tr.append("<td>" + element.reimbID + "</td>");
 	                tr.append("<td>" + element.firstName+element.lastName + "</td>");
+	                tr.append("<td>" + element.eventName + "</td>");
 	                tr.append("<td>" + element.eventType + "</td>");
+	                tr.append("<td>" + element.eventDesc + "</td>");
 	                tr.append("<td>" + element.eventCost + "</td>");
 	                tr.append("<td>" + element.gradeFormat + "</td>");
-	                tr.append("<td>" + element.reimbStatus + "</td>");
 	                tr.append("<td>" + element.timeStamp + "</td>");
 	                tr.append("<td>" + element.grade + "</td>");
 	                $('table').append(tr);
