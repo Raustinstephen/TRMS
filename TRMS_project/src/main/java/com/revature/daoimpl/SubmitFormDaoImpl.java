@@ -18,6 +18,7 @@ public class SubmitFormDaoImpl {
 			call = conn.prepareCall(sql);
 			Parsing parse = new Parsing();
 		double cost = parse.parsingDouble(req.getEventCost());
+		
 		double hours = parse.parsingDouble(req.getHoursMissed());
 		int eventType = parse.parsingInt(req.getEventType());
 		int gradeForm = parse.parsingInt(req.getGradeFormat());

@@ -75,6 +75,7 @@ public class ReimbInfo {
 		this.email = email;
 		this.reportsTo = reportsTo;
 		this.totalAwarded = totalAwarded;
+		this.grade = grade;
 	}
 	
 	
@@ -231,15 +232,17 @@ public class ReimbInfo {
 
 
 	@Override
+//	public String toString() {
+//		return "ReimbInfo [eventName=" + eventName + ", eventType=" + eventType + ", eventDesc=" + eventDesc
+//				+ ", location=" + location + ", eventTime=" + eventTime + ", eventCost=" + eventCost + ", gradeFormat="
+//				+ gradeFormat + ", justification=" + justification + ", reimbStatus=" + reimbStatus + ", hoursMissed="
+//				+ hoursMissed + ", nextAuthorize=" + nextAuthorize + ", timeStamp=" + timeStamp + ", firstName="
+//				+ firstName + ", lastName=" + lastName + ", email=" + email + ", reportsTo=" + reportsTo
+//				+ ", totalAwarded=" + totalAwarded + "]";
+//	}
 	public String toString() {
-		return "ReimbInfo [eventName=" + eventName + ", eventType=" + eventType + ", eventDesc=" + eventDesc
-				+ ", location=" + location + ", eventTime=" + eventTime + ", eventCost=" + eventCost + ", gradeFormat="
-				+ gradeFormat + ", justification=" + justification + ", reimbStatus=" + reimbStatus + ", hoursMissed="
-				+ hoursMissed + ", nextAuthorize=" + nextAuthorize + ", timeStamp=" + timeStamp + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", reportsTo=" + reportsTo
-				+ ", totalAwarded=" + totalAwarded + "]";
+		return "Grade: "+ grade;
 	}
-
 	
 	
 }

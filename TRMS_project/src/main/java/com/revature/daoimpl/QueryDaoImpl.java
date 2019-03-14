@@ -108,14 +108,14 @@ public class QueryDaoImpl {
 							String nextAuthorize = rs.getString(7);
 							String timeStamp = rs.getString(8);
 							String grade = rs.getString(9);
-							
 							//putting everything in the monster bean
 							ReimbInfo info = new ReimbInfo(eventName, eventType, eventDesc, eventLoc, eventTime,
 									eventCost, gradeFormat, justification, reimbID, reimbStatus, hoursMissed,
 									nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
 									totalAwarded, grade);
 							ri.add(info);
-							
+							System.out.println("Grade: " + info.getGrade());
+							System.out.println("Timestamp: " + info.getTimeStamp());
 						}
 //					}
 			}
