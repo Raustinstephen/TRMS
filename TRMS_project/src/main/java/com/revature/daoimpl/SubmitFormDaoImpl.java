@@ -12,7 +12,7 @@ public class SubmitFormDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	public void submitForm(ReimburstReq req, int EMP_ID) {
 		Connection conn = cf.getConnection();
-		String sql = "{ call INSERT_REIMB_REQ(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "{ call INSERT_REIMB_REQ(?,?,?,?,?,?,?,?,?)";
 		CallableStatement call;
 		try {
 			call = conn.prepareCall(sql);
