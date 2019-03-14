@@ -55,15 +55,15 @@ public class ReimbInfo {
 			this.reimbStatus = "Under Review-Ben. Coordinator";
 		}else if(reimbStatus == 3) {
 			this.reimbStatus = "Denied by Direct Supervisor";
-		}else if(reimbStatus == 4) {
-			this.reimbStatus = "Denied by Department Head";
 		}else if(reimbStatus == 5) {
+			this.reimbStatus = "Denied by Department Head";
+		}else if(reimbStatus == 6) {
 			this.reimbStatus = "Denied by Benefits Coordinator";
-		}else if(reimbStatus == 6){
+		}else if(reimbStatus == 7){
 			this.reimbStatus = "Denied by Benefits Coordinator";
-		}else if(reimbStatus == 7) {
-			this.reimbStatus = "Withdrawn by Employee";
 		}else if(reimbStatus == 8) {
+			this.reimbStatus = "Withdrawn by Employee";
+		}else if(reimbStatus == 4) {
 			this.reimbStatus = "Approved";
 		}
 		this.hoursMissed = hoursMissed;

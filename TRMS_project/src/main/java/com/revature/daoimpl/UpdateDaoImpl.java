@@ -2,6 +2,7 @@ package com.revature.daoimpl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,6 +32,13 @@ public class UpdateDaoImpl {
 	
 	//for the supervisor to approve or deny reimbursement and provide justification
 	public void approveDeny(int reimbID, int reimbStat) {
+		
+	}
+
+	public void approve(int rid, Integer emp) {
+		Connection conn = cf.getConnection();
+		String sql = "SELECT ";
+		PreparedStatement ps = conn.prepareStatement(sql);
 		
 	}
 }
