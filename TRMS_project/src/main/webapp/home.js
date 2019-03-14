@@ -34,22 +34,22 @@
 +        '<div class="form-group">'
 +            '<label for="f8">Grading Format</label>'
 +            '<select name="gradeFormat" id="f8">'
-+                '<option value="1">A - F</option>'
-+                '<option value="2">Pass/Fail</option>'
-+                '<option value="3">Percentage</option>'
-+                '<option value="4">Score</option>'
-+                '<option value="5">Does Not Apply</option>'
++                '<option value="af">A - F</option>'
++                '<option value="passfail">Pass/Fail</option>'
++                '<option value="percentage">Percentage</option>'
++                '<option value="score">Score</option>'
++                '<option value="doesntApply">Does Not Apply</option>'
 +            '</select>'
 +        '</div>'
 +        '<div class="form-group">'
 +                '<label for="f9">Event Type</label>'
 +                '<select name="eventType" id="f9">'
-+                        '<option value="1">University Course</option>'
-+                        '<option value="2">Seminar</option>'
-+                        '<option value="3">Certification Prepartion</option>'
-+                        '<option value="4">Certification</option>'
-+                        '<option value="5">Technical Training</option>'
-+                        '<option value="6">Other</option>'
++                        '<option value="universityCourse">University Course</option>'
++                        '<option value="seminar">Seminar</option>'
++                        '<option value="certifactionPreparation">Certification Prepartion</option>'
++                        '<option value="certification">Certification</option>'
++                        '<option value="technicalTraining">Technical Training</option>'
++                        '<option value="other">Other</option>'
 +                '</select>'
 +        '</div>'
 +        '<div class="form-group">'
@@ -122,13 +122,13 @@ var inputGrade =
 var approveDeny = 
 	'<div id="selectPage" class="card" style="width:20%;height:150px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
 	+    '<div class="card-body">'
-	+		'<form id="gradeForm">'
+	+		'<form id="appDen">'
 	+		'<div class="form-group" style="text-align:center;font-size:1em">'
 	+                '<label for="rn">Reimburstment ID</label>'
 	+                '<input type="text" name="reimbID" id="rn">'
 	+        '</div>' 
-	+        '<button type="button" id="approve" class="btn btn-success float-right">Approve</button>'
-	+        '<button type="button" id="deny" class="btn btn-danger float-right">Deny</button>'
+	+        '<button type="submit" id="approve" class="btn btn-success float-right">Approve</button>'
+	+        '<button type="submit" id="deny" class="btn btn-danger float-right">Deny</button>'
 	+		 '</form>'
 	+    '</div>'
 	+'</div>';	
@@ -169,6 +169,7 @@ $.fn.serializeObject = function () {
       
     });
 });
+ 
 // view req handler 
  $(function() {
 	    $('#viewReq').click(function() {
@@ -263,7 +264,7 @@ $.fn.serializeObject = function () {
 	        	$.each(data, function(i,element){
 	        		tr = $('<tr/>');
 	        		tr.append("<td>" + element.reimbID + "</td>");
-	                tr.append("<td>" + element.eventName + "</td>");
+	                tr.append("<td>" + element.firstName+element.lastName + "</td>");
 	                tr.append("<td>" + element.eventType + "</td>");
 	                tr.append("<td>" + element.eventCost + "</td>");
 	                tr.append("<td>" + element.gradeFormat + "</td>");
@@ -297,6 +298,48 @@ $.fn.serializeObject = function () {
 	        datatype: "json",
 	        data: JSON.stringify(formData),
 	        success: function(data){alert("Grade Updated")},
+	        error: function (xhr, ajaxOptions, thrownError) {
+	            alert(xhr.status);
+	            alert(thrownError);
+	          }
+	      });
+	      
+	    });
+	});
+ 
+ $(function() {
+	    $('#content').on('click','#approve', function(e) {
+	      e.preventDefault();
+	      console.log("in handler approve");
+	      var formData = $(this).serializeObject();
+	      console.log(JSON.stringify(formData));
+	      $.ajax({
+	        type: "POST",
+	        url: "ApproveServlet",
+	        datatype: "json",
+	        data: JSON.stringify(formData),
+	        success: function(data){alert("Approved")},
+	        error: function (xhr, ajaxOptions, thrownError) {
+	            alert(xhr.status);
+	            alert(thrownError);
+	          }
+	      });
+	      
+	    });
+	});
+ 
+ $(function() {
+	    $('#content').on('click','#deny', function(e) {
+	      e.preventDefault();
+	      console.log("in handler deny");
+	      var formData = $(this).serializeObject();
+	      console.log(JSON.stringify(formData));
+	      $.ajax({
+	        type: "POST",
+	        url: "DenyServlet",
+	        datatype: "json",
+	        data: JSON.stringify(formData),
+	        success: function(data){alert("Denied")},
 	        error: function (xhr, ajaxOptions, thrownError) {
 	            alert(xhr.status);
 	            alert(thrownError);
