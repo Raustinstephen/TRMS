@@ -264,7 +264,7 @@ $.fn.serializeObject = function () {
 	        	$.each(data, function(i,element){
 	        		tr = $('<tr/>');
 	        		tr.append("<td>" + element.reimbID + "</td>");
-	                tr.append("<td>" + element.firstName+element.lastName + "</td>");
+	                tr.append("<td>" + element.firstName+" "+element.lastName + "</td>");
 	                tr.append("<td>" + element.eventName + "</td>");
 	                tr.append("<td>" + element.eventType + "</td>");
 	                tr.append("<td>" + element.eventDesc + "</td>");
