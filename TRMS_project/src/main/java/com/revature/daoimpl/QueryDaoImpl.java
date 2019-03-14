@@ -89,13 +89,13 @@ public class QueryDaoImpl {
 						while(rs.next()) {
 							//all the items from TRMS_EVENT and TRMS_REIMBURST that we need
 							int queryEmpID = rs.getInt(2);
-							String eventName = rs.getString(11);
-							String eventDesc = rs.getString(12);
-							String eventLoc = rs.getString(13);
-							String eventTime = rs.getString(14);
-							double eventCost = rs.getDouble(15);
-							String gradeFormat = rs.getString(16);
-							String eventType = rs.getString(17);
+							String eventName = rs.getString(10);
+							String eventDesc = rs.getString(11);
+							String eventLoc = rs.getString(12);
+							String eventTime = rs.getString(13);
+							double eventCost = rs.getDouble(14);
+							String gradeFormat = rs.getString(15);
+							String eventType = rs.getString(16);
 							int reimbID = rs.getInt(1);
 							int eventID = rs.getInt(3);
 							String justification = rs.getString(4);
