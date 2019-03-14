@@ -38,7 +38,7 @@ public class UpdateDaoImpl {
 	public void approve(int rid, Integer emp) {
 		Connection conn = cf.getConnection();
 		String sql = "SELECT ";
-		PreparedStatement ps = conn.prepareStatement(sql);
+		//PreparedStatement ps = conn.prepareStatement(sql);
 		
 	}
 }

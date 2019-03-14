@@ -19,11 +19,12 @@ public class ReimbInfo {
 	private String email;
 	private String reportsTo;
 	private String totalAwarded;
+	private String grade;
 	
 	public ReimbInfo(String eventName, String eventType, String eventDesc, String location, String eventTime,
 			double eventCost, String gradeFormat, String justification, int reimbID, int reimbStatus, double hoursMissed,
 			String nextAuthorize, String timeStamp, String firstName, String lastName, String email, String reportsTo,
-			String totalAwarded) {
+			String totalAwarded, String grade) {
 		super();
 		this.eventName = eventName;
 		if(eventType.equals("1")) {
@@ -84,6 +85,16 @@ public class ReimbInfo {
 	}
 
 	
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+
 
 	public String getTimeStamp() {
 		return timeStamp;
