@@ -37,8 +37,50 @@ public class UpdateDaoImpl {
 
 	public void approve(int rid, Integer emp) {
 		Connection conn = cf.getConnection();
-		String sql = "SELECT ";
-		PreparedStatement ps = conn.prepareStatement(sql);
-		
+		String sql = "SELECT REIMBURST_STATUS,NEXT_AUTHORIZE_ID FROM TRMS_REIMBURST WHERE REIMBURST_ID='"+rid+"'";
+		int cur_status = 0;
+		int nextId = 0;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				cur_status = rs.getInt("REIMBURST_STATUS");
+				nextId = rs.getInt("NEXT_AUTHORIZE_ID");
+				System.out.println(cur_status);
+			}
+			if(cur_status+1 == 3) {
+				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID=0";
+			}else {
+				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID="+nextId;
+			}
+			ps = conn.prepareStatement(sql);
+			ps.executeQuery();	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+
+	public void deny(int rid) {
+		Connection conn = cf.getConnection();
+		String sql = "SELECT REIMBURST_STATUS FROM TRMS_REIMBURST WHERE REIMBURST_ID='"+rid+"'";
+		int cur_status = 1;
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				cur_status = rs.getInt("REIMBURST_STATUS");
+				System.out.println(cur_status);
+			}
+			sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+4)+", NEXT_AUTHORIZE_ID=0";
+			ps = conn.prepareStatement(sql);
+			ps.executeQuery();
+			//ENTER UPDATE FOR JUSTIFICAITON??
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
