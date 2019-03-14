@@ -2,25 +2,27 @@ package com.revature.beans;
 
 public class ReimbID {
 
-	private int id;
+	private int reimbID;
 
 	public ReimbID() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReimbID(int id) {
+	public ReimbID(int reimbID) {
 		super();
-		this.id = id;
+		this.reimbID = reimbID;
 	}
 
-	public int getId() {
-		return id;
+	public int getReimbID() {
+		return reimbID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setReimbID(int reimbID) {
+		this.reimbID = reimbID;
 	}
+
+
 	
 	
 }

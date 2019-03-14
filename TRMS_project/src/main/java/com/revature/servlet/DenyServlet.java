@@ -40,7 +40,7 @@ public class DenyServlet extends HttpServlet {
 		ObjectMapper om = new ObjectMapper();
 		ReimbID rid = om.readValue(request.getInputStream(),ReimbID.class);
 		UpdateDaoImpl udi = new UpdateDaoImpl();
-		udi.deny(rid.getId());
+		udi.deny(rid.getReimbID());
 	}
 
 }

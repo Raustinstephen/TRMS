@@ -127,8 +127,8 @@ var approveDeny =
 	+                '<label for="rn">Reimburstment ID</label>'
 	+                '<input type="text" name="reimbID" id="rn">'
 	+        '</div>' 
-	+        '<button type="submit" id="approve" class="btn btn-success float-right">Approve</button>'
-	+        '<button type="submit" id="deny" class="btn btn-danger float-right">Deny</button>'
+	+        '<button type="submit" name="approve" id="approve" class="btn btn-success float-right">Approve</button>'
+	+        '<button type="submit" name="deny" id="deny" class="btn btn-danger float-right">Deny</button>'
 	+		 '</form>'
 	+    '</div>'
 	+'</div>';	
@@ -309,11 +309,11 @@ $.fn.serializeObject = function () {
 	});
  
  $(function() {
-	    $('#content').on('click','#approve', function(e) {
+	    $('button[name=approve]').on('submit','#appDen', function(e) {
 	      e.preventDefault();
 	      console.log("in handler approve");
 	      var formData = $(this).serializeObject();
-	      console.log(JSON.stringify(formData));
+	      console.log("json"+JSON.stringify(formData));
 	      $.ajax({
 	        type: "POST",
 	        url: "ApproveServlet",

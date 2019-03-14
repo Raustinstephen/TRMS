@@ -37,26 +37,31 @@ public class UpdateDaoImpl {
 
 	public void approve(int rid, Integer emp) {
 		Connection conn = cf.getConnection();
-<<<<<<< HEAD
-		String sql = "SELECT REIMBURST_STATUS,NEXT_AUTHORIZE_ID FROM TRMS_REIMBURST WHERE REIMBURST_ID='"+rid+"'";
+		String sql = "SELECT REIMBURST_STATUS FROM TRMS_REIMBURST WHERE REIMBURST_ID="+rid;
+		String sql2 = "SELECT REPORTSTO FROM TRMS_EMPLOYEE WHERE EMP_ID="+emp.toString();
 		int cur_status = 0;
 		int nextId = 0;
-		PreparedStatement ps;
+		PreparedStatement ps1;
+		PreparedStatement ps2;
 		try {
-			ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
+			ps1 = conn.prepareStatement(sql);
+			ResultSet rs = ps1.executeQuery();
+			ps2 = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
 			while(rs.next()) {
 				cur_status = rs.getInt("REIMBURST_STATUS");
-				nextId = rs.getInt("NEXT_AUTHORIZE_ID");
-				System.out.println(cur_status);
+			}while(rs2.next()) {
+				nextId = rs2.getInt("REPORTSTO");
 			}
+			System.out.println(cur_status+" "+nextId);
 			if(cur_status+1 == 3) {
-				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID=0";
+				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID=0 WHERE REIMBURST_ID="+rid;
 			}else {
-				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID="+nextId;
+				System.out.println("curstat "+(cur_status+1)+" nextID= "+nextId+" rid "+rid);
+				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID="+nextId+" WHERE REIMBURST_ID="+rid;
 			}
-			ps = conn.prepareStatement(sql);
-			ps.executeQuery();	
+			ps1 = conn.prepareStatement(sql);
+			ps1.executeQuery();	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,10 +88,5 @@ public class UpdateDaoImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-=======
-		String sql = "SELECT ";
-		//PreparedStatement ps = conn.prepareStatement(sql);
-		
->>>>>>> a0c7f2bff46fbdf52f61ccd17fc5524c16918843
 	}
 }

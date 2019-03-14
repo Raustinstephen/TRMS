@@ -42,7 +42,7 @@ public class ApproveServlet extends HttpServlet {
 		ObjectMapper om = new ObjectMapper();
 		ReimbID rid = om.readValue(request.getInputStream(),ReimbID.class);
 		UpdateDaoImpl udi = new UpdateDaoImpl();
-		udi.approve(rid.getId(), (Integer) sess.getAttribute("EMP_ID"));
+		udi.approve(rid.getReimbID(), (Integer) sess.getAttribute("EMP_ID"));
 	}
 
 }
