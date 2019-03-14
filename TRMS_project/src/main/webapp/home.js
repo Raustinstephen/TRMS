@@ -120,7 +120,7 @@ var inputGrade =
 
 
 var approveDeny = 
-	'<div id="selectPage" class="card" style="width:20%;height:200px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
+	'<div id="selectPage" class="card" style="width:20%;height:150px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
 	+    '<div class="card-body">'
 	+		'<form id="gradeForm">'
 	+		'<div class="form-group" style="text-align:center;font-size:1em">'
