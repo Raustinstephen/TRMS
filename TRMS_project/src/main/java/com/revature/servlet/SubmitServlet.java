@@ -60,9 +60,6 @@ public class SubmitServlet extends HttpServlet {
 			//int empID= parse.parsingInt(sess.getAttribute);
 			sfdi.submitForm(req, (Integer) sess.getAttribute("EMP_ID"));
 			}
-		 response.setContentType("text/plain");
-		 response.setCharacterEncoding("UTF-8");
-		 response.getWriter().write("wahooooo");
 	}
 
 }

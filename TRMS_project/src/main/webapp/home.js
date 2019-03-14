@@ -34,22 +34,22 @@
 +        '<div class="form-group">'
 +            '<label for="f8">Grading Format</label>'
 +            '<select name="gradeFormat" id="f8">'
-+                '<option value="1">A - F</option>'
-+                '<option value="2">Pass/Fail</option>'
-+                '<option value="3">Percentage</option>'
-+                '<option value="4">Score</option>'
-+                '<option value="5">Does Not Apply</option>'
++                '<option value="af">A - F</option>'
++                '<option value="passfail">Pass/Fail</option>'
++                '<option value="percentage">Percentage</option>'
++                '<option value="score">Score</option>'
++                '<option value="doesntApply">Does Not Apply</option>'
 +            '</select>'
 +        '</div>'
 +        '<div class="form-group">'
-+                '<label for="f9">Grading Format</label>'
++                '<label for="f9">Event Type</label>'
 +                '<select name="eventType" id="f9">'
-+                        '<option value="1">University Course</option>'
-+                        '<option value="2">Seminar</option>'
-+                        '<option value="3">Certification Prepartion</option>'
-+                        '<option value="4">Certification</option>'
-+                        '<option value="5">Technical Training</option>'
-+                        '<option value="6">Other</option>'
++                        '<option value="universityCourse">University Course</option>'
++                        '<option value="seminar">Seminar</option>'
++                        '<option value="certifactionPreparation">Certification Prepartion</option>'
++                        '<option value="certification">Certification</option>'
++                        '<option value="technicalTraining">Technical Training</option>'
++                        '<option value="other">Other</option>'
 +                '</select>'
 +        '</div>'
 +        '<div class="form-group">'
@@ -71,6 +71,26 @@ var table =
 +				'<th scope="col">Cost</th>'
 +				'<th scope="col">Grade Format</th>'
 +				'<th scope="col">Status</th>'
++				'<th scope="col">Date Submitted</th>'
++				'<th scope="col">Grade</th>'
++			'</tr>'
++		'</thead>'
++		'<tbody>'
++		'</tbody>'
++	'</table>';
+
+
+var table2 = 
+	'<table class="table">'
++		'<thead>'
++			'<tr>'
++				'<th scope="col">Reimburstment ID</th>'
++				'<th scope="col">Employee Name</th>'
++				'<th scope="col">Event Name</th>'
++				'<th scope="col">Event Type</th>'
++				'<th scope="col">Event Description</th>'
++				'<th scope="col">Cost</th>'
++				'<th scope="col">Grade Format</th>'
 +				'<th scope="col">Date Submitted</th>'
 +				'<th scope="col">Grade</th>'
 +			'</tr>'
@@ -150,6 +170,7 @@ $.fn.serializeObject = function () {
 	        	
 	        	$.each(data, function(i,element){
 	        		tr = $('<tr/>');
+	        		tr.append("<td>" + element.reimbID + "</td>");
 	                tr.append("<td>" + element.eventName + "</td>");
 	                tr.append("<td>" + element.eventType + "</td>");
 	                tr.append("<td>" + element.eventCost + "</td>");
@@ -189,6 +210,7 @@ $.fn.serializeObject = function () {
 	        	
 	        	$.each(data, function(i,element){
 	        		tr = $('<tr/>');
+	        		tr.append("<td>" + element.reimbID + "</td>");
 	                tr.append("<td>" + element.eventName + "</td>");
 	                tr.append("<td>" + element.eventType + "</td>");
 	                tr.append("<td>" + element.eventCost + "</td>");
@@ -204,6 +226,43 @@ $.fn.serializeObject = function () {
 	});
  });
  
+ 
+ //aprrove button handler
+ $(function() {
+	    $('#approve').click(function() {
+	      $('#selectPage').remove();
+	      $('#content').append(table2);
+	      $.ajax({
+	        type: "POST",
+	        url: "ViewRequestServlet",
+	        error: function (xhr, ajaxOptions, thrownError) {
+	            alert(xhr.status);
+	            alert(thrownError);
+	          },
+	        success: function(data){
+	        	console.log(data);
+	        	$("#selectPage").remove();
+	        	
+	        	$.each(data, function(i,element){
+	        		tr = $('<tr/>');
+	        		tr.append("<td>" + element.reimbID + "</td>");
+	                tr.append("<td>" + element.eventName + "</td>");
+	                tr.append("<td>" + element.eventType + "</td>");
+	                tr.append("<td>" + element.eventCost + "</td>");
+	                tr.append("<td>" + element.gradeFormat + "</td>");
+	                tr.append("<td>" + element.reimbStatus + "</td>");
+	                tr.append("<td>" + element.timeStamp + "</td>");
+	                tr.append("<td>" + element.grade + "</td>");
+	                $('table').append(tr);
+	        	});
+	        	
+	        	
+	        }
+	        
+	      });
+	      
+	    });
+	});
  
  
  //handler for grade submit

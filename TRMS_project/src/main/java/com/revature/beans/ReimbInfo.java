@@ -26,6 +26,19 @@ public class ReimbInfo {
 			String totalAwarded) {
 		super();
 		this.eventName = eventName;
+		if(eventType.equals("1")) {
+			this.eventType = "University Course";
+		}else if(eventType.equals("2")) {
+			this.eventType = "Seminar";
+		}else if(eventType.equals("3")) {
+			this.eventType = "Certification Prep";
+		}else if(eventType.equals("4")) {
+			this.eventType = "Certification";
+		}else if(eventType.equals("5")) {
+			this.eventType = "Technical Training";
+		}else if(eventType.equals("6")) {
+			this.eventType = "Other";
+		}
 		this.eventType = eventType;
 		this.eventDesc = eventDesc;
 		this.location = location;

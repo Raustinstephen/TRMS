@@ -3,14 +3,15 @@ package com.revature.beans;
 public class Grade {
 	private int reimbID;
 	private String grade;
+	
+	
+	public Grade() {
+		super();
+	}
 	public Grade(int reimbID, String grade) {
 		super();
 		this.reimbID = reimbID;
 		this.grade = grade;
-	}
-	public Grade() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	public int getReimbID() {
 		return reimbID;
