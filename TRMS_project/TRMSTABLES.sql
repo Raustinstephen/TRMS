@@ -207,10 +207,11 @@ INSERT INTO TRMS_EMPLOYEE values (300764,'Jeffrey','Skilling','j.skilling@dseng.
 --HR (includes Benefits Coordinator)
 INSERT INTO TRMS_EMPLOYEE values (400097,'Cheryl','Tunt','c.tunt@dseng.com','babou','Chief Recruiter',400,400003,0);
 INSERT INTO TRMS_EMPLOYEE values (400103,'Brett','Buckley','b.buckley@dseng.com','owthathurt','Recruiter',400,400097,0);
-INSERT INTO TRMS_EMPLOYEE values (400032,'Ray','Gilette','r.gilette@dseng.com','bioniclegs','Benefits Coordinator',400,400003,0);
+INSERT INTO TRMS_EMPLOYEE values (400032,'Ray','Gilette','r.gilette@dseng.com','bioniclegs','Benefits Coordinator',400,0,0);
 --General
 INSERT INTO TRMS_EMPLOYEE values (500383,'Leslie','Knope','l.knope@dseng.com','mspresident','Deputy Director',500,500182,0);
 INSERT INTO TRMS_EMPLOYEE values (500875,'April','Ludgate','a.ludgate@dseng.com','imnotweird','Intern',500,500383,0);
+INSERT INTO TRMS_EMPLOYEE values (500863,'Tom','Haverford','t.haverford@dseng.com','idontcare','Subordinate',500,500383,27.82);
 --GRADING FORMAT #################
 INSERT INTO GRADE values (1,'AF');
 INSERT INTO GRADE values (2,'PassFail');
@@ -228,10 +229,10 @@ INSERT INTO EVENT_TYPE_TABLE values (6,'Other');
 INSERT INTO STATUS values (0,'Under Review-Direct Supervisor');
 INSERT INTO STATUS values (1,'Under Review-Department Head');
 INSERT INTO STATUS values (2,'Under Review-Ben. Coordinator');
-INSERT INTO STATUS values (3,'Denied by Direct Supervisor');
-INSERT INTO STATUS values (4,'Denied by Department Head');
-INSERT INTO STATUS values (5,'Denied by Benefits Coordinator');
-INSERT INTO STATUS values (6,'Withdrawn by Employee');
-INSERT INTO STATUS values (7,'Approved');
+INSERT INTO STATUS values (3,'Approved');
+INSERT INTO STATUS values (4,'Denied by Direct Supervisor');
+INSERT INTO STATUS values (5,'Denied by Department Head');
+INSERT INTO STATUS values (6,'Denied by Benefits Coordinator');
+INSERT INTO STATUS values (7,'Withdrawn by Employee');
 
 COMMIT;

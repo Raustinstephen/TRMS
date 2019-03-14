@@ -71,12 +71,6 @@ public class QueryDaoImpl {
 		Connection conn = cf.getConnection();
 		ArrayList<ReimbInfo> ri = new ArrayList<ReimbInfo>();
 		
-				String employee[] = empInfo(empID);
-				String firstName = employee[0];
-				String lastName = employee[1];
-				String email = employee[2];
-				String reportsTo = employee[3];
-				String totalAwarded = employee[4];
 			
 				Statement stmt;
 				try {
@@ -89,6 +83,15 @@ public class QueryDaoImpl {
 						while(rs.next()) {
 							//all the items from TRMS_EVENT and TRMS_REIMBURST that we need
 							int queryEmpID = rs.getInt(2);
+							
+							//query employee info
+							String employee[] = empInfo(queryEmpID);
+							String firstName = employee[0];
+							String lastName = employee[1];
+							String email = employee[2];
+							String reportsTo = employee[3];
+							String totalAwarded = employee[4];
+							
 							String eventName = rs.getString(11);
 							String eventDesc = rs.getString(12);
 							String eventLoc = rs.getString(13);
