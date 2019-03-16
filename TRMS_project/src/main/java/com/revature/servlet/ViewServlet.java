@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.beans.ReimView;
 import com.revature.beans.ReimbInfo;
 import com.revature.daoimpl.QueryDaoImpl;
 
@@ -41,7 +42,7 @@ public class ViewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		QueryDaoImpl qdi = new QueryDaoImpl();
 		HttpSession sess = request.getSession();
-		ArrayList<ReimbInfo> ri = qdi.reimbInfo((Integer)sess.getAttribute("EMP_ID"));
+		ArrayList<ReimView> ri = qdi.getReqInfo((Integer)sess.getAttribute("EMP_ID"));
 		ObjectMapper om = new ObjectMapper();
 		response.setContentType("application/json");
 		om.writeValue(response.getOutputStream(), ri);

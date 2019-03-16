@@ -102,7 +102,56 @@
  +'</div>'
  +'</div>'	 
 ;
- 
+function getViewCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,grade,feedback){
+	res =  '<div class="card" id="10083" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191" >'
++    '<div class="card-header">Reimburstment Request ID: '+rid+'<span style="float:right">Status: '+status+'</span></div>'
++    '<div class="card-body">'
++        '<div class="card-rows">'
++            '<div class="card-columns">'
++                '<div>Event Name: '+eventName+'</div>'
++                '<div>Event Type: '+eventType+'</div>'
++                '<div>Date Submitted: '+dateSubmitted+'</div>'
++            '</div>'
++            '<div class="card-columns" style="margin-top:10px">'
++                '<div>Cost: $'+cost+'</div>'
++                '<div>Reimburstment: $'+reimb+'</div>'
++                '<div>Grade: '+grade+'</div>'
++            '</div>'
++            '<div style="margin-top:10px">Feedback: '+feedback+'</div>'
++        '</div>'
++    '</div>'
++'</div>';
+	return res;
+}
+
+function getGradeCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,grade,feedback){
+	res =  
+ '<div class="card" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191" >'
++    '<div class="card-header">Reimburstment Request ID: '+rid+'<span style="float:right">Status: '+status+'</span></div>'
++    '<div class="card-body">'
++        '<div class="card-rows">'
++            '<div class="card-columns">'
++                '<div>Event Name: '+eventName+'</div>'
++                '<div>Event Type: '+eventType+'</div>'
++                '<div>Date Submitted: '+dateSubmitted+'</div>'
++            '</div>'
++            '<div class="card-columns" style="margin-top:10px">'
++                '<div>Cost: $'+cost+'</div>'
++                '<div>Reimburstment: $'+reimb+'</div>'
++                '<div>Grade: '+grade+'</div>'
++            '</div>'
++            '<div style="margin-top:10px">Feedback: '+feedback+'</div>'
++        '</div>'
++    '</div>'
++	 '<div class="card-footer">'
++		'<form id="gradeForm" style="float:right" value="'+rid+'">'
++    		'<input type="text" placeholder="Enter grade here" name="grade">'
++    		'<button type="submit" class="btn btn-success">Submit Grade</button>'
++		'</form>'
++	'</div>'
++'</div>';
+	return res;
+}
 
 function getCard(reimbId,empId,empName,empTitle,eventName,eventType,eventCost,eventDate,eventTime,eventLocation,eventDesc){	
 res= '<div class="card" id="'+reimbId+'" style="width:80%;margin:0 auto;top:40px;box-shadow:5px 5px 5px #929191" >'
@@ -264,7 +313,16 @@ $.fn.serializeObject = function () {
 	        	console.log(data);
 	        	$("#selectPage").remove();
 	        	$.each(data, function(i,element){
-	        		
+	        		$('#content').append(getViewCard(
+	        				element.rid,
+	        				element.status,
+	        				element.eventName,
+	        				element.eventType,
+	        				element.dateSubmitted,
+	        				element.cost,
+	        				element.reimb,
+	        				element.grade,
+	        				element.feedback));
 	        	});
 	        	
 	        	
@@ -280,9 +338,7 @@ $.fn.serializeObject = function () {
  //Enter grade handler
  $(function() {
 	    $('#addGrade').click(function() {
-	    	console.log('grade clicked')
-	      $('#selectPage').remove();
-	      $('#content').append(table);
+	    	console.log('grade clicked');
 	      $.ajax({
 	        type: "POST",
 	        url: "ViewServlet",
@@ -291,26 +347,51 @@ $.fn.serializeObject = function () {
 	            alert(thrownError);
 	          },
 	        success: function(data){
-	        	console.log(data);
-	        	$("#selectPage").remove();
-	        	
+	        	$('#selectPage').remove();
+	        	console.log(data);    	
 	        	$.each(data, function(i,element){
-	        		tr = $('<tr/>');
-	        		tr.append("<td>" + element.reimbID + "</td>");
-	                tr.append("<td>" + element.eventName + "</td>");
-	                tr.append("<td>" + element.eventType + "</td>");
-	                tr.append("<td>" + element.eventCost + "</td>");
-	                tr.append("<td>" + element.gradeFormat + "</td>");
-	                tr.append("<td>" + element.reimbStatus + "</td>");
-	                tr.append("<td>" + element.timeStamp + "</td>");
-	                tr.append("<td>" + element.grade + "</td>");
-	                $('table').append(tr);
-	                $('#content').append(inputGrade);                
+	        		if(element.grade == "In Progress"){
+	        			$('#content').append(getGradeCard(
+	        				element.rid,
+	        				element.status,
+	        				element.eventName,
+	        				element.eventType,
+	        				element.dateSubmitted,
+	        				element.cost,
+	        				element.reimb,
+	        				element.grade,
+	        				element.feedback
+	        			));
+	        		}
 	        	});        	        	
 	        }       
 	      });    
 	});
  });
+ //grade Form handler
+ $(function() {
+	    $('#content').on('submit','#gradeForm', function(e) {
+	      e.preventDefault();
+	      var gradeUpdate = { "grade" 	: $('#gradeForm').find('input[name="grade"]').val(),
+	    		  			  "rid"		: $('#gradeForm').attr('value')};
+	      console.log(JSON.stringify(gradeUpdate));
+	      $.ajax({
+	        type: "POST",
+	        url: "GradeServlet",
+	        datatype: "json",
+	        data: JSON.stringify(gradeUpdate),
+	        success: function(data){
+	        	alert("Grade Updated")
+	        	$('#gradeForm').parent().parent().remove();
+	        },
+	        error: function (xhr, ajaxOptions, thrownError) {
+	            alert(xhr.status);
+	            alert(thrownError);
+	          }
+	      });
+	      
+	    });
+	});
  
  
  //aprroveDeny button handler
@@ -347,30 +428,8 @@ $.fn.serializeObject = function () {
 	      
 	    });
 	});
+
  
- 
- //handler for grade submit
- 
- $(function() {
-	    $('#content').on('submit','#gradeForm', function(e) {
-	      e.preventDefault();
-	      console.log("in handler");
-	      var formData = $(this).serializeObject();
-	      console.log(JSON.stringify(formData));
-	      $.ajax({
-	        type: "POST",
-	        url: "GradeServlet",
-	        datatype: "json",
-	        data: JSON.stringify(formData),
-	        success: function(data){alert("Grade Updated")},
-	        error: function (xhr, ajaxOptions, thrownError) {
-	            alert(xhr.status);
-	            alert(thrownError);
-	          }
-	      });
-	      
-	    });
-	});
  
  $(function() {
 	    $('#appDen').on('submit','#appDen', function(e) {

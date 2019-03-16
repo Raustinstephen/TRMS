@@ -1,34 +1,41 @@
 package com.revature.beans;
 
 public class Grade {
-	private int reimbID;
+	private int rid;
 	private String grade;
 	
 	
 	public Grade() {
 		super();
 	}
-	public Grade(int reimbID, String grade) {
+
+
+	public Grade(int rid, String grade) {
 		super();
-		this.reimbID = reimbID;
+		this.rid = rid;
 		this.grade = grade;
 	}
-	public int getReimbID() {
-		return reimbID;
+
+
+	public int getRid() {
+		return rid;
 	}
-	public void setReimbID(int reimbID) {
-		this.reimbID = reimbID;
+
+
+	public void setRid(int rid) {
+		this.rid = rid;
 	}
+
+
 	public String getGrade() {
 		return grade;
 	}
+
+
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	@Override
-	public String toString() {
-		return "Grade [reimbID=" + reimbID + ", grade=" + grade + "]";
-	}
+
 	
 	
 }

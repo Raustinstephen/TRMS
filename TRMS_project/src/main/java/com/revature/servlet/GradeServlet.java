@@ -43,7 +43,7 @@ public class GradeServlet extends HttpServlet {
 
 		ObjectMapper om = new ObjectMapper();
 		Grade g = om.readValue(request.getInputStream(),Grade.class);
-		 udi.updateGrade(g.getReimbID(), g.getGrade());
+		udi.updateGrade(g);
 	}
 
 }

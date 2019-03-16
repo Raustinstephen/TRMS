@@ -6,22 +6,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.revature.beans.ReimView;
 import com.revature.beans.ReimbInfo;
 import com.revature.util.ConnFactory;
 
 public class QueryDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
-	public ArrayList<ReimbInfo> reimbInfo(int empID) {
+	public ArrayList<ReimView> getReqInfo(int empID) {
 	Connection conn = cf.getConnection();
-	ArrayList<ReimbInfo> ri = new ArrayList<ReimbInfo>();
-	
-			String employee[] = empInfo(empID);
-			String firstName = employee[0];
-			String lastName = employee[1];
-			String email = employee[2];
-			String reportsTo = employee[3];
-			String totalAwarded = employee[4];
+	ArrayList<ReimView> ri = new ArrayList<ReimView>();
 		
 			Statement stmt;
 			try {
@@ -32,45 +26,29 @@ public class QueryDaoImpl {
 					stmt = conn.createStatement();
 					ResultSet rs = stmt.executeQuery(sql);
 					while(rs.next()) {
-						//all the items from TRMS_EVENT and TRMS_REIMBURST that we need
-						String eventName = rs.getString(2);
-						String eventDesc = rs.getString(3);
-						String eventLoc = rs.getString(4);
-						String eventTime = rs.getString(5);
-						double eventCost = rs.getDouble(6);
-						String gradeFormat = rs.getString(7);
-						String eventType = rs.getString(8);
-						int reimbID = rs.getInt(9);
-						int eventID = rs.getInt(11);
-						String justification = rs.getString(12);
-						int reimbStatus = rs.getInt(13);
-						double hoursMissed = rs.getDouble(14);
-						String nextAuthorize = rs.getString(15);
-						String timeStamp = rs.getString(16);
-						String grade = rs.getString("GRADE_REC");
-						
-						//putting everything in the monster bean
-						ReimbInfo info = new ReimbInfo(eventName, eventType, eventDesc, eventLoc, eventTime,
-								eventCost, gradeFormat, justification, reimbID, reimbStatus, hoursMissed,
-								nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
-								totalAwarded, grade);
-						ri.add(info);
-						
+						ReimView rv = new ReimView(
+								rs.getInt("REIMBURST_ID"),
+								rs.getInt("REIMBURST_STATUS"),
+								rs.getString("EVENT_NAME"),
+								rs.getInt("EVENT_TYPE"),
+								rs.getDate("R_TIMESTAMP").toString(),
+								rs.getDouble("EVENT_COST"),
+								rs.getDouble("EST_REIMB"),
+								rs.getString("GRADE"),
+								rs.getString("FEEDBACK"));
+						ri.add(rv);						
 					}
-//				}
-		}
-		
-	 catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	 }
+			}	
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 	return ri;	
 	}
 	
 	
-	public ArrayList<ReimbInfo> nextApprove(int empID) {
+	public ArrayList<ReimView> nextApprove(int empID) {
 		Connection conn = cf.getConnection();
-		ArrayList<ReimbInfo> ri = new ArrayList<ReimbInfo>();
+		ArrayList<ReimView> ri = new ArrayList<ReimView>();
 		
 			
 				Statement stmt;
@@ -82,38 +60,17 @@ public class QueryDaoImpl {
 						stmt = conn.createStatement();
 						ResultSet rs = stmt.executeQuery(sql);
 						while(rs.next()) {
-							//all the items from TRMS_EVENT and TRMS_REIMBURST that we need
-							int queryEmpID = rs.getInt(2);
-							
-							//query employee info
-							String employee[] = empInfo(queryEmpID);
-							String firstName = employee[0];
-							String lastName = employee[1];
-							String email = employee[2];
-							String reportsTo = employee[3];
-							String totalAwarded = employee[4];
-							
-							String eventName = rs.getString(11);
-							String eventDesc = rs.getString(12);
-							String eventLoc = rs.getString(13);
-							String eventTime = rs.getString(14);
-							double eventCost = rs.getDouble(15);
-							String gradeFormat = rs.getString(16);
-							String eventType = rs.getString(17);
-							int reimbID = rs.getInt(1);
-							int eventID = rs.getInt(3);
-							String justification = rs.getString(4);
-							int reimbStatus = rs.getInt(5);
-							double hoursMissed = rs.getDouble(6);
-							String nextAuthorize = rs.getString(7);
-							String timeStamp = rs.getString(8);
-							String grade = rs.getString(9);
-							//putting everything in the monster bean
-							ReimbInfo info = new ReimbInfo(eventName, eventType, eventDesc, eventLoc, eventTime,
-									eventCost, gradeFormat, justification, reimbID, reimbStatus, hoursMissed,
-									nextAuthorize, timeStamp, firstName, lastName, email, reportsTo,
-									totalAwarded, grade);
-							ri.add(info);
+							ReimView rv = new ReimView(
+									rs.getInt("REIMBURST_ID"),
+									rs.getInt("REIMBURST_STATUS"),
+									rs.getString("EVENT_NAME"),
+									rs.getInt("EVENT_TYPE"),
+									rs.getDate("DATE").toString(),
+									rs.getDouble("COST"),
+									rs.getDouble("EST_REIMB"),
+									rs.getString("GRADE"),
+									rs.getString("FEEDBACK"));
+							ri.add(rv);
 						}
 //					}
 			}

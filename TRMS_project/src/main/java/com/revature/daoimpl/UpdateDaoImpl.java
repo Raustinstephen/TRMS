@@ -7,20 +7,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.revature.beans.Grade;
 import com.revature.util.ConnFactory;
 
 public class UpdateDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
 	//for the employee to update their grade after the event
-	public void updateGrade(int reimbID, String grade) {
+	public void updateGrade(Grade g) {
 		Connection conn = cf.getConnection();
 		String sql = "{ call UPDATE_GRADE(?,?)";
 		CallableStatement call;
 		try {
 			call = conn.prepareCall(sql);
-			call.setInt(1, reimbID);
-			call.setString(2, grade);
+			call.setInt(1, g.getRid());
+			call.setString(2, g.getGrade());
 			call.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
