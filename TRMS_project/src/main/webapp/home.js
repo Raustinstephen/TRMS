@@ -61,6 +61,39 @@
 +    '</div>'
 +'</div>';
 
+function getCard(reimbId,empId,empName,empTitle,eventName,eventType,eventCost,eventDate,eventTime,eventLocation,eventDesc){	
+res= '<div class="card" id="'+reimbId+'" style="width:80%;margin:0 auto;top:40px;box-shadow:5px 5px 5px #929191" >'
++    '<div class="card-header">Reimburstment Request ID: '+reimbId+'</div>'
++    '<div class="card-body">'
++        '<div class="card-rows">'
++            '<div class="card-columns">'
++                '<div>Employee ID: '+empId+'</div>'
++                '<div>Employee Name: '+empName+'</div>'
++                '<div>Title: '+empTitle+'</div>'
++            '</div>'
++           '<div class="card-columns" style="margin-top:10px">'
++                    '<div>Event Name: '+eventName+'</div>'
++                    '<div>Event Type: '+eventType+'</div>'
++                    '<div>Cost: $'+eventCost+'</div>'
++                '</div>'
++            '<div class="card-columns" style="margin-top:10px">'
++                '<div>Event Date: '+eventDate+'</div>'
++                '<div>Time: '+eventTime+'</div>'
++                '<div>Location: '+eventLocation+'</div>'
++            '</div>'
++            '<div style="margin-top:10px">Description: '+eventDesc+'</div>'
++        '</div>'
++    '</div>'
++    '<div class="card-footer" style="margin-top:15px">'
++        '<div style="float:right">'
++            '<button class="btn btn-success" style="width:100px">Approve</button>'
++            '<button class="btn btn-danger" style="width:100px;margin-left: 20px">Reject</button>'   
++        '</div>'
++    '</div>'
++'</div>';
+console.log(res);
+return res;
+}
 var table = 
 	'<table class="table">'
 +		'<thead>'
@@ -248,8 +281,6 @@ $.fn.serializeObject = function () {
  //aprroveDeny button handler
  $(function() {
 	    $('#approve').click(function() {
-	      $('#selectPage').remove();
-	      $('#content').append(table2);
 	      $.ajax({
 	        type: "POST",
 	        url: "ViewRequestServlet",
@@ -259,24 +290,22 @@ $.fn.serializeObject = function () {
 	          },
 	        success: function(data){
 	        	console.log(data);
-	        	$("#selectPage").remove();
-	        	
+	        	$("#selectPage").remove();   
+	        	var card;
 	        	$.each(data, function(i,element){
-	        		tr = $('<tr/>');
-	        		tr.append("<td>" + element.reimbID + "</td>");
-	                tr.append("<td>" + element.firstName+" "+element.lastName + "</td>");
-	                tr.append("<td>" + element.eventName + "</td>");
-	                tr.append("<td>" + element.eventType + "</td>");
-	                tr.append("<td>" + element.eventDesc + "</td>");
-	                tr.append("<td>" + element.eventCost + "</td>");
-	                tr.append("<td>" + element.gradeFormat + "</td>");
-	                tr.append("<td>" + element.timeStamp + "</td>");
-	                tr.append("<td>" + element.grade + "</td>");
-	                $('table').append(tr);
-	                $('#content').append(approveDeny);
+	        		card= getCard(	element.reimbId,
+	        						element.firstName+" "+element.lastName,
+	        						element.eventName,
+	        						element.eventType,
+	        						element.eventCost,
+	        						element.eventDate,
+	        						element.eventTime,
+	        						element.location,
+	        						element.eventDesc);
+	        		$("$content").append(card); 		
 	        	});
 	        	
-	        	
+	        	reimbId,empId,empName,empTitle,eventName,eventType,eventCost,eventDate,eventTime,eventLocation,eventDesc
 	        }
 	        
 	      });
@@ -309,7 +338,7 @@ $.fn.serializeObject = function () {
 	});
  
  $(function() {
-	    $('button[name=approve]').on('submit','#appDen', function(e) {
+	    $('#appDen').on('submit','#appDen', function(e) {
 	      e.preventDefault();
 	      console.log("in handler approve");
 	      var formData = $(this).serializeObject();
@@ -355,6 +384,6 @@ $(function() {
 	$("#newReimburst").click(function(){
 		$("#selectPage").remove();
 		$("#content").append(formHTML);
-})});
-
+	});
+});
 
