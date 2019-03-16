@@ -1,7 +1,6 @@
 package com.revature.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -32,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: login doGet").append(request.getContextPath());
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 			sess.setAttribute("EMP_ID", id);
 	        request.getRequestDispatcher("employeeDash.html").forward(request, response); 
 		}else {
-			//redirect to login
+			response.sendRedirect("login.html");
 		} 
 	}
 

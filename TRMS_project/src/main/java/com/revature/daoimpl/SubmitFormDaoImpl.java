@@ -12,7 +12,6 @@ public class SubmitFormDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
 	public void submitForm(ReimburstReq req, int EMP_ID) {
-		QueryDaoImpl qdi = new QueryDaoImpl();
 		Connection conn = cf.getConnection();
 		String sql = "{ call INSERT_REIMB_REQ(?,?,?,?,?,?,?,?,?,?)";
 		CallableStatement call;
@@ -40,17 +39,18 @@ public class SubmitFormDaoImpl {
 			else if (eventType==6) {
 				toBeAwarded = cost*0.3;
 			}else {
-				//nothing
+				toBeAwarded = 0.0;
 			}
 		call.setInt(1, EMP_ID);
 		call.setString(2,req.getEventName());
-		call.setInt(3,parse.parsingInt(req.getEventType()));
+		call.setInt(3,eventType);
 		call.setInt(4, parse.parsingInt(req.getGradeFormat()));
 		call.setString(5, req.getDate());
 		call.setString(6, req.getAddress()+", "+req.getCity() + ", " + req.getState());
-		call.setDouble(7, parse.parsingDouble(req.getEventCost()));
+		call.setDouble(7, cost);
 		call.setDouble(8, parse.parsingDouble(req.getHoursMissed()));
 		call.setString(9, req.getEventJust());
+		call.setDouble(10, toBeAwarded);
 		call.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

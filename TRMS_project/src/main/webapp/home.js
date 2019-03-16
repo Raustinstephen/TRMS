@@ -1,65 +1,108 @@
-    var formHTML =         
-    '<div class="card" style="margin:50px 50px 20px 50px">'
-+    '<div class="card-body">'
-+		 '<form id="myForm">'
-+        '<h5 class="card-title" style="text-align:center;font-size:2em">New Reimburstment Request</h5>'
-+        '<div class="form-group">'
-+            '<label for="f1">Event Name</label>'
-+            '<input type="text" name="eventName" id="f1">'
-+        '</div>'
-+        '<div class="form-group">'
-+            '<label for="f2">Event Address</label>'
-+            '<input type="text" name="address" id="f2">'
-+        '</div>'
-+        '<div class="form-group">'
-+            '<label for="f3">Event City</label>'
-+            '<input type="text" name="city" id="f3">'
-+        '</div>'
-+        '<div class="form-group">'
-+            '<label for="f4">Event State</label>'
-+            '<input type="text" name="state" id=f4>'
-+        '</div>'
-+        '<div class="form-group">'
-+            '<label for="f5">Event Description</label>'
-+            '<input type="text" name="eventDesc" id="f5">'
-+        '</div>'
-/*+        '<div class="form-group">'
-+            '<label for="f6">Event Justification</label>'
-+            '<input type="text" name="justification" id="f6">'
-+        '</div>'*/
-+        '<div class="form-group">'
-+            '<label for="f7">Event Cost</label>'
-+            '<input type="text" name="eventCost" id="f7">'
-+        '</div>'
-+        '<div class="form-group">'
-+            '<label for="f8">Grading Format</label>'
-+            '<select name="gradeFormat" id="f8">'
-+                '<option value="1">A - F</option>'
-+                '<option value="2">Pass/Fail</option>'
-+                '<option value="3">Percentage</option>'
-+                '<option value="4">Score</option>'
-+                '<option value="5">Does Not Apply</option>'
-+            '</select>'
-+        '</div>'
-+        '<div class="form-group">'
-+                '<label for="f9">Event Type</label>'
-+                '<select name="eventType" id="f9">'
-+                        '<option value="1">University Course</option>'
-+                        '<option value="2">Seminar</option>'
-+                        '<option value="3">Certification Prepartion</option>'
-+                        '<option value="4">Certification</option>'
-+                        '<option value="5">Technical Training</option>'
-+                        '<option value="6">Other</option>'
-+                '</select>'
-+        '</div>'
-+        '<div class="form-group">'
-+                '<label for="f9">Hours of work missed</label>'
-+                '<input type="text" name="hoursMissed" id="f9">'
-+        '</div>' 
-+        '<button type="submit" id="formButton" class="btn btn-info float-right" style="margin:20px 20px 0px 0px;width:20%" id="btnLogin">Submit</button>'
-+		 '</form>'
-+    '</div>'
+ var formHTML = 
+ '<div class="card " style="width:70%;margin:0 auto;float:none;top:40px">'
++ '<form id="myForm">'
++     '<div class="card-header" style="text-align:center;font-size:1.6em">New Reimburstment Request</div>'
++     '<div class="card-body">'
++         '<div class="form-group row">'
++             '<label for="f1" class="col-md-5 col-form-label text-md-right">Event Name</label>'
++             '<div class="col-md-3">'
++                 '<input type="text" id="f1" class="form-control" name="eventName">'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f2" class="col-md-5 col-form-label text-md-right">Event Type</label>'
++             '<div class="col-md-3">'
++                 '<select name="eventType" class="form-control" id="f2">'
++                     '<option value="1">University Course</option>'
++                     '<option value="2">Seminar</option>'
++                     '<option value="3">Certification Prepartion</option>'
++                     '<option value="4">Certification</option>'
++                     '<option value="5">Technical Training</option>'
++                     '<option value="6">Other</option>'
++                 '</select>'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f3" class="col-md-5 col-form-label text-md-right">Grade Format</label>'
++             '<div class="col-md-3">'
++                 '<select name="gradeFormat" class="form-control" id="f3">'
++                     '<option value="1">A - F</option>'
++                     '<option value="2">Pass/Fail</option>'
++                     '<option value="3">Percentage</option>'
++                     '<option value="4">Score</option>'
++                     '<option value="5">Does Not Apply</option>'
++                 '</select>'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f9" class="col-md-5 col-form-label text-md-right">Date & Time</label>'
++             '<div class="col-md-3">'
++                 '<input type="text" id="f9" class="form-control" name="date" placeholder="DD/MM/YYYY HH:MM">'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f4" class="col-md-5 col-form-label text-md-right">Event Address</label>'
++             '<div class="col-md-3">'
++                 '<input type="text" id="f4" class="form-control" name="address">'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f5" class="col-md-5 col-form-label text-md-right">Event City</label>'
++              '<div class="col-md-3">'
++                 '<input type="text" id="f5" class="form-control" name="city">'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f6" class="col-md-5 col-form-label text-md-right">Event State</label>'
++             '<div class="col-md-3">'
++                 '<input type="text" id="f6" class="form-control" name="state">'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f7" class="col-md-5 col-form-label text-md-right">Event Cost</label>'
++             '<div class="col-md-3">'
++                 '<input type="text" id="f7" class="form-control" name="eventCost">'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f8" class="col-md-5 col-form-label text-md-right">Approximate hours of work missed</label>'
++             '<div class="col-md-3">'
++                 '<input type="text" id="f8" class="form-control" name="hoursMissed">'
++             '</div>'
++         '</div>'
++         '<div class="form-group row">'
++             '<label for="f10" class="col-md-5 col-form-label text-md-right">Justification of reimburstment</label>'
++             '<div class="col-md-3">'
++                 '<input type="text" id="f10" class="form-control" name="eventJust">'
++             '</div>'
++         '</div>'    
++     '</div>'
++     '<div class="card-footer">'
++         '<button type="submit" id="formButton" class="btn btn-info" style="float:right;width:200px;margin-bottom:30px" id="btnLogin">Submit</button>'
++     '</div>'
++ '</form>'
 +'</div>';
+ 
+ var mainMenu = 
+ +'<div id="selectPage" class="card" style="width:30%;height:350px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
+ +'<div class="card-body">'
+ +    '<h5 class="card-title" style="text-align:center;font-size:2em">Welcome</h5>'
+ +    '<div class="form-group" style="text-align:center;font-size:2em;top:50px">'
+ +        '<button type="button" class="btn btn-info" id="viewReq">View previous Reimburstment requests</button>'
+ +    '</div>'
+ +    '<div class="form-group" style="text-align:center;font-size:2em">'
+ +         '<button type="button" class="btn btn-info" id="newReimburst">Submit new reimburstment request</button>'
+ +    '</div>'
+ +    '<div class="form-group" style="text-align:center;font-size:2em">'
+ +         '<button type="button" class="btn btn-info" id="addGrade">Enter Grade For Request</button>'
+ +    '</div>'
+ +    '<div class="form-group" style="text-align:center;font-size:2em">'
+ +         '<button type="button" class="btn btn-info" id="approve">Approve or deny Applicants</button>'
+ +    '</div>'
+ +'</div>'
+ +'</div>'	 
+;
+ 
 
 function getCard(reimbId,empId,empName,empTitle,eventName,eventType,eventCost,eventDate,eventTime,eventLocation,eventDesc){	
 res= '<div class="card" id="'+reimbId+'" style="width:80%;margin:0 auto;top:40px;box-shadow:5px 5px 5px #929191" >'
@@ -181,7 +224,7 @@ $.fn.serializeObject = function () {
     });
     return o;
  };
-
+//submit form handler
  $(function() {
     $('#content').on('submit','#myForm', function(e) {
       e.preventDefault();
@@ -193,7 +236,11 @@ $.fn.serializeObject = function () {
         url: "SubmitServlet",
         datatype: "json",
         data: JSON.stringify(formData),
-        success: function(data){console.log("yayyy");},
+        success: function(data){
+        	alert("Submission successful, remember to enter your grade upon completion");
+        	$("#contents").removeChild($("#contents").childNodes[0]);
+        	$("#contents").append(mainMenu);
+        },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status);
             alert(thrownError);
@@ -206,8 +253,6 @@ $.fn.serializeObject = function () {
 // view req handler 
  $(function() {
 	    $('#viewReq').click(function() {
-	      $('#selectPage').remove();
-	      $('#content').append(table);
 	      $.ajax({
 	        type: "POST",
 	        url: "ViewServlet",
@@ -218,18 +263,8 @@ $.fn.serializeObject = function () {
 	        success: function(data){
 	        	console.log(data);
 	        	$("#selectPage").remove();
-	        	
 	        	$.each(data, function(i,element){
-	        		tr = $('<tr/>');
-	        		tr.append("<td>" + element.reimbID + "</td>");
-	                tr.append("<td>" + element.eventName + "</td>");
-	                tr.append("<td>" + element.eventType + "</td>");
-	                tr.append("<td>" + element.eventCost + "</td>");
-	                tr.append("<td>" + element.gradeFormat + "</td>");
-	                tr.append("<td>" + element.reimbStatus + "</td>");
-	                tr.append("<td>" + element.timeStamp + "</td>");
-	                tr.append("<td>" + element.grade + "</td>");
-	                $('table').append(tr);
+	        		
 	        	});
 	        	
 	        	
