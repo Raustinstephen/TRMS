@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.revature.beans.Approve;
 import com.revature.beans.Deny;
 import com.revature.beans.Grade;
 import com.revature.util.ConnFactory;
@@ -27,10 +28,10 @@ public class UpdateDaoImpl {
 		}	
 	}
 
-	public void approve(int rid, Integer emp) {
+	public void approve(Approve a, int emp) {
 		Connection conn = cf.getConnection();
-		String sql = "SELECT REIMBURST_STATUS FROM TRMS_REIMBURST WHERE REIMBURST_ID="+rid;
-		String sql2 = "SELECT REPORTSTO FROM TRMS_EMPLOYEE WHERE EMP_ID="+emp.toString();
+		String sql = "SELECT REIMBURST_STATUS FROM TRMS_REIMBURST WHERE REIMBURST_ID="+a.getRid();
+		String sql2 = "SELECT REPORTSTO FROM TRMS_EMPLOYEE WHERE EMP_ID="+emp;
 		int cur_status = 0;
 		int nextId = 0;
 		PreparedStatement ps1;
@@ -46,11 +47,11 @@ public class UpdateDaoImpl {
 				nextId = rs2.getInt("REPORTSTO");
 			}
 			System.out.println(cur_status+" "+nextId);
-			if(cur_status+1 == 3) {
-				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID=0 WHERE REIMBURST_ID="+rid;
+			if(cur_status == 2) {
+				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID=0 WHERE REIMBURST_ID="+a.getRid();
 			}else {
-				System.out.println("curstat "+(cur_status+1)+" nextID= "+nextId+" rid "+rid);
-				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID="+nextId+" WHERE REIMBURST_ID="+rid;
+				System.out.println("curstat "+(cur_status+1)+" nextID= "+nextId+" rid "+a.getRid());
+				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID="+nextId+" WHERE REIMBURST_ID="+a.getRid();
 			}
 			ps1 = conn.prepareStatement(sql);
 			ps1.executeQuery();	

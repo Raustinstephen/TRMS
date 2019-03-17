@@ -279,6 +279,14 @@ $.fn.serializeObject = function () {
     });
     return o;
  };
+//Opens new Submit Form
+ $(function() {
+		$("#newReimburst").click(function(){
+			$("#selectPage").remove();
+			$("#content").append(formHTML);
+		});
+	});
+ 
 //submit form handler
  $(function() {
     $('#content').on('submit','#myForm', function(e) {
@@ -305,7 +313,7 @@ $.fn.serializeObject = function () {
     });
 });
  
-// view req handler 
+// view request handler 
  $(function() {
 	    $('#viewReq').click(function() {
 	      $.ajax({
@@ -341,7 +349,7 @@ $.fn.serializeObject = function () {
  
  
  
- //Enter grade handler
+ //Opens Enter Grade page
  $(function() {
 	    $('#addGrade').click(function() {
 	    	console.log('grade clicked');
@@ -374,6 +382,7 @@ $.fn.serializeObject = function () {
 	      });    
 	});
  });
+ 
  //grade Form handler
  $(function() {
 	    $('#content').on('submit','#gradeForm', function(e) {
@@ -399,7 +408,7 @@ $.fn.serializeObject = function () {
 	});
  
  
- //aprroveDeny button handler
+ //Open Approve Reject Page
  $(function() {
 	    $('#approve').click(function() {
 	      $.ajax({
@@ -439,26 +448,24 @@ $.fn.serializeObject = function () {
  
  //approve button handler
  $(function() {
-	    $('#appDen').on('submit','#appDen', function(e) {
+	    $('#appDen').on('click','.approve', function(e) {
 	      e.preventDefault();
-	      console.log("in handler approve");
-	      var formData = $(this).serializeObject();
+	      var approveUpdate = {"rid" : $(this).attr('value')};
 	      console.log("json"+JSON.stringify(formData));
 	      $.ajax({
 	        type: "POST",
 	        url: "ApproveServlet",
 	        datatype: "json",
-	        data: JSON.stringify(formData),
+	        data: JSON.stringify(approveUpdate),
 	        success: function(data){alert("Approved")},
 	        error: function (xhr, ajaxOptions, thrownError) {
 	            alert(xhr.status);
 	            alert(thrownError);
 	          }
 	      });
-	      
 	    });
 	});
- //deny button handler
+ //reject button handler
  $(function() {
 	    $('#content').on('click','.reject', function(e) {
 	      e.preventDefault();
@@ -476,15 +483,6 @@ $.fn.serializeObject = function () {
 	            alert(thrownError);
 	          }
 	      });
-	      
 	    });
 	});
- 
-//new reimb request handler
-$(function() {
-	$("#newReimburst").click(function(){
-		$("#selectPage").remove();
-		$("#content").append(formHTML);
-	});
-});
 
