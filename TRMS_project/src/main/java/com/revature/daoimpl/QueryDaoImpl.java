@@ -1,6 +1,7 @@
 package com.revature.daoimpl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,7 @@ import com.revature.beans.ReimbInfo;
 import com.revature.util.ConnFactory;
 
 public class QueryDaoImpl {
+	
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
 	public ArrayList<ReimView> getReqInfo(int empID) {
@@ -45,75 +47,46 @@ public class QueryDaoImpl {
 	return ri;	
 	}
 	
-	
-	public ArrayList<ReimView> nextApprove(int empID) {
+	public ArrayList<ReimbInfo> nextApprove(int empID) {
 		Connection conn = cf.getConnection();
-		ArrayList<ReimView> ri = new ArrayList<ReimView>();
+		ArrayList<ReimbInfo> ri = new ArrayList<ReimbInfo>();
 		
 			
-				Statement stmt;
+				PreparedStatement ps;
 				try {
-					String sql = "SELECT * FROM TRMS_REIMBURST " +
-								"LEFT JOIN TRMS_EVENT\r\n" + 
-								"ON TRMS_REIMBURST.EVENT_ID=TRMS_EVENT.EVENT_ID\n"
-								+ "WHERE NEXT_AUTHORIZE_ID="+empID;
-						stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+					String sql = 	"SELECT *"
+		+							"FROM ((TRMS_REIMBURST"
+		+							"INNER JOIN TRMS_EVENT ON TRMS_REIMBURST.EVENT_ID = TRMS_EVENT.EVENT_ID)"
+		+							"INNER JOIN TRMS_EMPLOYEE ON TRMS_REIMBURST.EMPLOYEE_ID = TRMS_EMPLOYEE.EMP_ID)"
+		+							"WHERE TRMS_REIMBURST.NEXT_AUTHORIZE_ID = "+empID;
+							
+						ps = conn.prepareStatement(sql);
+						ResultSet rs = ps.executeQuery();
 						while(rs.next()) {
-							ReimView rv = new ReimView(
+							ReimbInfo rei = new ReimbInfo(
 									rs.getInt("REIMBURST_ID"),
-									rs.getInt("REIMBURST_STATUS"),
+									rs.getString("R_TIMESTAMP"),
+									rs.getString("FIRSTNAME")+" "+rs.getString("LAST_NAME"),
+									rs.getString("TITLE"),
+									rs.getInt("DEPT"),
 									rs.getString("EVENT_NAME"),
 									rs.getInt("EVENT_TYPE"),
-									rs.getDate("DATE").toString(),
-									rs.getDouble("COST"),
-									rs.getDouble("EST_REIMB"),
+									rs.getInt("GRADE_FORMAT"),
+									rs.getString("LOCATION"),
+									rs.getString("EVENT_DATE"),
 									rs.getString("GRADE"),
-									rs.getString("FEEDBACK"));
-							ri.add(rv);
+									rs.getDouble("EVENT_COST"),
+									rs.getDouble("EST_REIMB"),
+									rs.getString("JUSTIFICATION"));
+									ri.add(rei);
 						}
-//					}
-			}
-			
-		 catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		 }
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
 		return ri;	
-		}
-	
-	
-	public String[] empInfo (int empID){
-		Connection conn = cf.getConnection();
-		//grabbing everything we need from employee table
-		String sql = "SELECT * FROM TRMS_EMPLOYEE WHERE EMP_ID="+empID;
-		Statement stmt;
-		try {
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()) {
-				//Saving as an array
-				String[] employee = {rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(8),rs.getString(9)};
-				//returning as an array
-				return employee;
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//returning null if not found
-		return null;
-		
 	}
 	
-	public void eventInfo(int eventID) {
-		Connection conn = cf.getConnection();
-		String sql = "SELECT * FROM TRMS_EVENTS WHERE EVENT_ID="+eventID;
-		
-		
-		}
 	public double pendingAwards(int empID) {
 		Connection conn = cf.getConnection();
 			String sql = "SELECT EVENT_COST FROM TRMS_EVENT " +

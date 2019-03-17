@@ -1,82 +1,22 @@
 package com.revature.beans;
 
 public class ReimbInfo {
+	
+	private int rid;
+	private String dateSubmitted;
+	private String empName;
+	private String empTitle;
+	private String empDept;
 	private String eventName;
 	private String eventType;
-	private String eventDesc;
-	private String location;
-	private String eventTime;
-	private double eventCost;
 	private String gradeFormat;
-	private String justification;
-	private int reimbID;
-	private String reimbStatus;
-	private double hoursMissed;
-	private String nextAuthorize;
-	private String timeStamp;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String reportsTo;
-	private String totalAwarded;
+	private String location;
+	private String date;
 	private String grade;
+	private double cost;
+	private double estReimb;
+	private String justification;
 	
-	public ReimbInfo(String eventName, String eventType, String eventDesc, String location, String eventTime,
-			double eventCost, String gradeFormat, String justification, int reimbID, int reimbStatus, double hoursMissed,
-			String nextAuthorize, String timeStamp, String firstName, String lastName, String email, String reportsTo,
-			String totalAwarded, String grade) {
-		super();
-		this.eventName = eventName;
-		if(eventType.equals("1")) {
-			this.eventType = "University Course";
-		}else if(eventType.equals("2")) {
-			this.eventType = "Seminar";
-		}else if(eventType.equals("3")) {
-			this.eventType = "Certification Prep";
-		}else if(eventType.equals("4")) {
-			this.eventType = "Certification";
-		}else if(eventType.equals("5")) {
-			this.eventType = "Technical Training";
-		}else if(eventType.equals("6")) {
-			this.eventType = "Other";
-		}
-		this.eventType = eventType;
-		this.eventDesc = eventDesc;
-		this.location = location;
-		this.eventTime = eventTime;
-		this.eventCost = eventCost;
-		this.gradeFormat = gradeFormat;
-		this.justification = justification;
-		this.reimbID = reimbID;
-		if(reimbStatus == 0) {
-			this.reimbStatus = "Under Review-Direct Supervisor";
-		}else if(reimbStatus == 1) {
-			this.reimbStatus = "Under Review-Department Head";
-		}else if(reimbStatus == 2) {
-			this.reimbStatus = "Under Review-Ben. Coordinator";
-		}else if(reimbStatus == 3) {
-			this.reimbStatus = "Denied by Direct Supervisor";
-		}else if(reimbStatus == 5) {
-			this.reimbStatus = "Denied by Department Head";
-		}else if(reimbStatus == 6) {
-			this.reimbStatus = "Denied by Benefits Coordinator";
-		}else if(reimbStatus == 7){
-			this.reimbStatus = "Denied by Benefits Coordinator";
-		}else if(reimbStatus == 8) {
-			this.reimbStatus = "Withdrawn by Employee";
-		}else if(reimbStatus == 4) {
-			this.reimbStatus = "Approved";
-		}
-		this.hoursMissed = hoursMissed;
-		this.nextAuthorize = nextAuthorize;
-		this.timeStamp = timeStamp;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.reportsTo = reportsTo;
-		this.totalAwarded = totalAwarded;
-		this.grade = grade;
-	}
 	
 	
 	
@@ -85,11 +25,211 @@ public class ReimbInfo {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+
+
+
+	public ReimbInfo(int rid, String dateSubmitted, String empName, String empTitle, int empDept, String eventName,
+			int eventType, int gradeFormat, String location, String date, String grade, double cost,
+			double estReimb, String justification) {
+		super();
+		this.rid = rid;
+		this.dateSubmitted = dateSubmitted;
+		this.empName = empName;
+		this.empTitle = empTitle;
+		if(empDept == 100)this.empDept = "Clerical";
+		else if(empDept == 200)this.empDept = "IT";
+		else if(empDept == 300)this.empDept = "Accounting";
+		else if(empDept == 400)this.empDept = "HR";
+		else if(empDept == 500)this.empDept = "General";
+		else if(empDept == 600)this.empDept = "Executive";
+		else this.empDept = "error";
+		this.eventName = eventName;
+		if(eventType == 1)this.eventType = "University Course";
+		else if(eventType == 2)this.eventType = "Seminar";
+		else if(eventType == 3)this.eventType = "Certification Prep";
+		else if(eventType == 4)this.eventType = "Certification";
+		else if(eventType == 5)this.eventType = "Technical Training";
+		else if(eventType == 6)this.eventType = "Other";
+		else this.eventType = "error";
+		if(gradeFormat == 1)this.gradeFormat = "A - F";
+		else if(gradeFormat == 2)this.gradeFormat = "Pass/Fail";
+		else if(gradeFormat == 3)this.gradeFormat = "Percentage";
+		else if(gradeFormat == 4)this.gradeFormat = "Score";
+		else if(gradeFormat == 5)this.gradeFormat = "Does not apply";
+		else this.gradeFormat = "error";
+		this.location = location;
+		this.date = date;
+		this.grade = grade;
+		this.cost = cost;
+		this.estReimb = estReimb;
+		this.justification = justification;
+	}
+
+
+
+
+	public int getRid() {
+		return rid;
+	}
+
+
+
+
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+
+
+
+
+	public String getDateSubmitted() {
+		return dateSubmitted;
+	}
+
+
+
+
+	public void setDateSubmitted(String dateSubmitted) {
+		this.dateSubmitted = dateSubmitted;
+	}
+
+
+
+
+	public String getEmpName() {
+		return empName;
+	}
+
+
+
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+
+
+
+	public String getEmpTitle() {
+		return empTitle;
+	}
+
+
+
+
+	public void setEmpTitle(String empTitle) {
+		this.empTitle = empTitle;
+	}
+
+
+
+
+	public String getEmpDept() {
+		return empDept;
+	}
+
+
+
+
+	public void setEmpDept(int empDept) {
+		if(empDept == 100)this.empDept = "Clerical";
+		else if(empDept == 200)this.empDept = "IT";
+		else if(empDept == 300)this.empDept = "Accounting";
+		else if(empDept == 400)this.empDept = "HR";
+		else if(empDept == 500)this.empDept = "General";
+		else if(empDept == 600)this.empDept = "Executive";
+	}
+
+
+
+
+	public String getEventName() {
+		return eventName;
+	}
+
+
+
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+
+
+
+	public String getEventType() {
+		return eventType;
+	}
+
+
+
+
+	public void setEventType(int eventType) {
+		if(eventType == 1)this.eventType = "University Course";
+		else if(eventType == 2)this.eventType = "Seminar";
+		else if(eventType == 3)this.eventType = "Certification Prep";
+		else if(eventType == 4)this.eventType = "Certification";
+		else if(eventType == 5)this.eventType = "Technical Training";
+		else if(eventType == 6)this.eventType = "Other";
+		else this.eventType = "error";
+	}
+
+
+
+
+	public String getGradeFormat() {
+		return gradeFormat;
+	}
+
+
+
+
+	public void setGradeFormat(int gradeFormat) {
+		if(gradeFormat == 1)this.gradeFormat = "A - F";
+		else if(gradeFormat == 2)this.gradeFormat = "Pass/Fail";
+		else if(gradeFormat == 3)this.gradeFormat = "Percentage";
+		else if(gradeFormat == 4)this.gradeFormat = "Score";
+		else if(gradeFormat == 5)this.gradeFormat = "Does not apply";
+		else this.gradeFormat = "error";
+	}
+
+
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
 
 	public String getGrade() {
 		return grade;
 	}
+
+
+
 
 	public void setGrade(String grade) {
 		this.grade = grade;
@@ -97,152 +237,58 @@ public class ReimbInfo {
 
 
 
-	public String getTimeStamp() {
-		return timeStamp;
+
+	public double getCost() {
+		return cost;
 	}
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
+
+
+
+
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
-	public String getEventName() {
-		return eventName;
+
+
+
+
+	public double getEstReimb() {
+		return estReimb;
 	}
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
+
+
+
+
+	public void setEstReimb(double estReimb) {
+		this.estReimb = estReimb;
 	}
-	public String getEventType() {
-		return eventType;
-	}
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
-	}
-	public String getEventDesc() {
-		return eventDesc;
-	}
-	public void setEventDesc(String eventDesc) {
-		this.eventDesc = eventDesc;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	public String getEventTime() {
-		return eventTime;
-	}
-	public void setEventTime(String eventTime) {
-		this.eventTime = eventTime;
-	}
-	public double getEventCost() {
-		return eventCost;
-	}
-	public void setEventCost(double eventCost) {
-		this.eventCost = eventCost;
-	}
-	public String getGradeFormat() {
-		return gradeFormat;
-	}
-	public void setGradeFormat(String gradeFormat) {
-		this.gradeFormat = gradeFormat;
-	}
+
+
+
+
 	public String getJustification() {
 		return justification;
 	}
+
+
+
+
 	public void setJustification(String justification) {
 		this.justification = justification;
 	}
-	public String getReimbStatus() {
-		return reimbStatus;
-	}
-	public void setReimbStatus(int reimbStatus) {
-		if(reimbStatus == 0) {
-			this.reimbStatus = "Under Review-Direct Supervisor";
-		}else if(reimbStatus == 1) {
-			this.reimbStatus = "Under Review-Department Head";
-		}else if(reimbStatus == 2) {
-			this.reimbStatus = "Under Review-Ben. Coordinator";
-		}else if(reimbStatus == 3) {
-			this.reimbStatus = "Denied by Direct Supervisor";
-		}else if(reimbStatus == 4) {
-			this.reimbStatus = "Denied by Department Head";
-		}else if(reimbStatus == 5) {
-			this.reimbStatus = "Denied by Benefits Coordinator";
-		}else if(reimbStatus == 6){
-			this.reimbStatus = "Denied by Benefits Coordinator";
-		}else if(reimbStatus == 7) {
-			this.reimbStatus = "Withdrawn by Employee";
-		}else if(reimbStatus == 8) {
-			this.reimbStatus = "Approved";
-		}
-	}
-	public double getHoursMissed() {
-		return hoursMissed;
-	}
-	public void setHoursMissed(double hoursMissed) {
-		this.hoursMissed = hoursMissed;
-	}
-	public String getNextAuthorize() {
-		return nextAuthorize;
-	}
-	public void setNextAuthorize(String nextAuthorize) {
-		this.nextAuthorize = nextAuthorize;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getReportsTo() {
-		return reportsTo;
-	}
-	public void setReportsTo(String reportsTo) {
-		this.reportsTo = reportsTo;
-	}
-	public String getTotalAwarded() {
-		return totalAwarded;
-	}
-	public void setTotalAwarded(String totalAwarded) {
-		this.totalAwarded = totalAwarded;
-	}
 
-	
-	
-
-
-	public int getReimbID() {
-		return reimbID;
-	}
-	public void setReimbID(int reimbID) {
-		this.reimbID = reimbID;
-	}
 
 
 
 	@Override
-//	public String toString() {
-//		return "ReimbInfo [eventName=" + eventName + ", eventType=" + eventType + ", eventDesc=" + eventDesc
-//				+ ", location=" + location + ", eventTime=" + eventTime + ", eventCost=" + eventCost + ", gradeFormat="
-//				+ gradeFormat + ", justification=" + justification + ", reimbStatus=" + reimbStatus + ", hoursMissed="
-//				+ hoursMissed + ", nextAuthorize=" + nextAuthorize + ", timeStamp=" + timeStamp + ", firstName="
-//				+ firstName + ", lastName=" + lastName + ", email=" + email + ", reportsTo=" + reportsTo
-//				+ ", totalAwarded=" + totalAwarded + "]";
-//	}
 	public String toString() {
-		return "Grade: "+ grade;
+		return "ReimbInfo [rid=" + rid + ", dateSubmitted=" + dateSubmitted + ", empName=" + empName + ", empTitle="
+				+ empTitle + ", empDept=" + empDept + ", eventName=" + eventName + ", eventType=" + eventType
+				+ ", gradeFormat=" + gradeFormat + ", location=" + location + ", date=" + date + ", grade=" + grade
+				+ ", cost=" + cost + ", estReimb=" + estReimb + ", justification=" + justification + "]";
 	}
+
+
 	
 	
 }
