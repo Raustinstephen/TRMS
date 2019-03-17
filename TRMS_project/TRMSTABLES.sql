@@ -185,7 +185,7 @@ END;
 --Sample Reimburstment Requests
 EXECUTE INSERT_REIMB_REQ(500875,'CPR Training',2,3,'04/24/2020 12:55','somewhere idk where lalallalala',152.33,20,'because i want to',132.33);
 EXECUTE INSERT_REIMB_REQ (500875,'Intro to Humanities2',4,1,'05/03/1962 04:32','12 Wilabee La Park City, NY',453.23,93,'To be more humane',13.36);
-EXECUTE INSERT_REIMB_REQ (500875,'Intro to Humanities2',4,1,'05/03/1962 04:32','12 Wilabee La Park City, NY',453.23,93,'To be more humane',13.36);
+EXECUTE INSERT_REIMB_REQ (500875,'Intro to Humanities2',4,1,'05/03/1962 04:32','12 Wilabee La Park City, NY',453.23,93,'A GOOD REAson',13.36);
 --Departments
 INSERT INTO TRMS_DEPT values (100,'Clerical',100157);
 INSERT INTO TRMS_DEPT values (200,'IT',200007);

@@ -75,6 +75,7 @@ public class QueryDaoImpl {
 									rs.getString("GRADE"),
 									rs.getDouble("EVENT_COST"),
 									rs.getDouble("EST_REIMB"),
+									rs.getDouble("WORKHOURS_MISSED"),
 									rs.getString("JUSTIFICATION"));
 									ri.add(rei);
 						}

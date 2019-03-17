@@ -436,6 +436,7 @@ $.fn.serializeObject = function () {
 	        			element.grade,
 	        			element.cost,
 	        			element.estReimb,
+	        			element.hrsMissed,
 	        			element.justification);
 	        		$("#content").append(card); 		
 	        	});
@@ -448,10 +449,9 @@ $.fn.serializeObject = function () {
  
  //approve button handler
  $(function() {
-	    $('#appDen').on('click','.approve', function(e) {
+	    $('#content').on('click','.approve', function(e) {
 	      e.preventDefault();
 	      var approveUpdate = {"rid" : $(this).attr('value')};
-	      console.log("json"+JSON.stringify(formData));
 	      $.ajax({
 	        type: "POST",
 	        url: "ApproveServlet",
@@ -471,7 +471,6 @@ $.fn.serializeObject = function () {
 	      e.preventDefault();
 	      var denyUpdate = { 	"reason" 	: prompt("Enter your reason for rejection","No Feedback"),
 	    		  				"rid"		: $(this).attr('value')};
-	      console.log(JSON.stringify(denyUpdate));
 	      $.ajax({
 	        type: "POST",
 	        url: "DenyServlet",

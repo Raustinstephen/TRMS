@@ -15,6 +15,7 @@ public class ReimbInfo {
 	private String grade;
 	private double cost;
 	private double estReimb;
+	private double hrsMissed;
 	private String justification;
 	
 	
@@ -22,7 +23,6 @@ public class ReimbInfo {
 	
 	public ReimbInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -30,7 +30,7 @@ public class ReimbInfo {
 
 	public ReimbInfo(int rid, String dateSubmitted, String empName, String empTitle, int empDept, String eventName,
 			int eventType, int gradeFormat, String location, String date, String grade, double cost,
-			double estReimb, String justification) {
+			double estReimb, double hrsMissed, String justification) {
 		super();
 		this.rid = rid;
 		this.dateSubmitted = dateSubmitted;
@@ -62,7 +62,22 @@ public class ReimbInfo {
 		this.grade = grade;
 		this.cost = cost;
 		this.estReimb = estReimb;
+		this.hrsMissed = hrsMissed;
 		this.justification = justification;
+	}
+
+
+
+
+	public double getHrsMissed() {
+		return hrsMissed;
+	}
+
+
+
+
+	public void setHrsMissed(double hrsMissed) {
+		this.hrsMissed = hrsMissed;
 	}
 
 

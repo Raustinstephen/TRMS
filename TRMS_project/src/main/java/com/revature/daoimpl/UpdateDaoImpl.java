@@ -46,11 +46,9 @@ public class UpdateDaoImpl {
 			}while(rs2.next()) {
 				nextId = rs2.getInt("REPORTSTO");
 			}
-			System.out.println(cur_status+" "+nextId);
 			if(cur_status == 2) {
 				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID=0 WHERE REIMBURST_ID="+a.getRid();
 			}else {
-				System.out.println("curstat "+(cur_status+1)+" nextID= "+nextId+" rid "+a.getRid());
 				sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+1)+", NEXT_AUTHORIZE_ID="+nextId+" WHERE REIMBURST_ID="+a.getRid();
 			}
 			ps1 = conn.prepareStatement(sql);
@@ -70,9 +68,8 @@ public class UpdateDaoImpl {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				cur_status = rs.getInt("REIMBURST_STATUS");
-				System.out.println(cur_status);
 			}
-			sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+4)+", NEXT_AUTHORIZE_ID=0 WHERE REIMBURST_ID = "+d.getRid();
+			sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+4)+", NEXT_AUTHORIZE_ID=0, FEEDBACK='"+d.getReason()+"' WHERE REIMBURST_ID = "+d.getRid();
 			ps = conn.prepareStatement(sql);
 			ps.executeQuery();
 		} catch (SQLException e) {
