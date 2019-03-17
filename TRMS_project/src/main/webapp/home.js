@@ -1,5 +1,5 @@
  var formHTML = 
- '<div class="card " style="width:70%;margin:0 auto;float:none;top:40px">'
+ '<div class="card " style="width:70%;margin:0 auto;float:none;top:40pxbackground-color:whitesmoke;">'
 + '<form id="myForm">'
 +     '<div class="card-header" style="text-align:center;font-size:1.6em">New Reimburstment Request</div>'
 +     '<div class="card-body">'
@@ -82,29 +82,10 @@
 +     '</div>'
 + '</form>'
 +'</div>';
- 
- var mainMenu = 
- +'<div id="selectPage" class="card" style="width:30%;height:350px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
- +'<div class="card-body">'
- +    '<h5 class="card-title" style="text-align:center;font-size:2em">Welcome</h5>'
- +    '<div class="form-group" style="text-align:center;font-size:2em;top:50px">'
- +        '<button type="button" class="btn btn-info" id="viewReq">View previous Reimburstment requests</button>'
- +    '</div>'
- +    '<div class="form-group" style="text-align:center;font-size:2em">'
- +         '<button type="button" class="btn btn-info" id="newReimburst">Submit new reimburstment request</button>'
- +    '</div>'
- +    '<div class="form-group" style="text-align:center;font-size:2em">'
- +         '<button type="button" class="btn btn-info" id="addGrade">Enter Grade For Request</button>'
- +    '</div>'
- +    '<div class="form-group" style="text-align:center;font-size:2em">'
- +         '<button type="button" class="btn btn-info" id="approve">Approve or deny Applicants</button>'
- +    '</div>'
- +'</div>'
- +'</div>'	 
-;
+
 function getViewCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,grade,feedback){
 	res =  
-		 '<div class="card" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191" >'
+		 '<div class="card" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191;background-color:whitesmoke;" >'
 +    '<div class="card-header">Reimburstment Request ID: '+rid+'<span style="float:right">Status: '+status+'</span></div>'
 +    '<div class="card-body">'
 +        '<div class="card-rows">'
@@ -127,7 +108,7 @@ function getViewCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,gra
 
 function getGradeCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,grade,feedback){
 	res =  
- '<div class="card" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191" >'
+ '<div class="card" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191;background-color:whitesmoke;" >'
 +    '<div class="card-header">Reimburstment Request ID: '+rid+'<span style="float:right">Status: '+status+'</span></div>'
 +    '<div class="card-body">'
 +        '<div class="card-rows">'
@@ -156,7 +137,7 @@ function getGradeCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,gr
 
 function getApproveDenyCard(rid,dateSubmitted,empName,empTitle,empDept,eventName,eventType,gradeFormat,location,date,grade,cost,estReimb,workMissed,justification){	
 res=                 
-'<div class="card" id="reimbId" style="width:80%;margin:0 auto;top:40px;margin-bottom:40px;box-shadow:5px 5px 5px #929191" >'
+'<div class="card" id="reimbId" style="width:80%;margin:0 auto;top:40px;margin-bottom:40px;box-shadow:5px 5px 5px #929191;background-color:whitesmoke;" >'
 +'<div class="card-header">Reimburstment Request ID: '+rid+'<span style="float:right">Date Submitted: '+dateSubmitted+'</span></div>'
 +'<div class="card-body">'
 +    '<div class="card-rows">'
@@ -192,77 +173,6 @@ res=
 +'</div>';
 return res;
 }
-var table = 
-	'<table class="table">'
-+		'<thead>'
-+			'<tr>'
-+				'<th scope="col">Reimburstment ID</th>'
-+				'<th scope="col">Event Name</th>'
-+				'<th scope="col">Event Type</th>'
-+				'<th scope="col">Cost</th>'
-+				'<th scope="col">Grade Format</th>'
-+				'<th scope="col">Status</th>'
-+				'<th scope="col">Date Submitted</th>'
-+				'<th scope="col">Grade</th>'
-+			'</tr>'
-+		'</thead>'
-+		'<tbody>'
-+		'</tbody>'
-+	'</table>';
-
-
-var table2 = 
-	'<table class="table">'
-+		'<thead>'
-+			'<tr>'
-+				'<th scope="col">Reimburstment ID</th>'
-+				'<th scope="col">Employee Name</th>'
-+				'<th scope="col">Event Name</th>'
-+				'<th scope="col">Event Type</th>'
-+				'<th scope="col">Event Description</th>'
-+				'<th scope="col">Cost</th>'
-+				'<th scope="col">Grade Format</th>'
-+				'<th scope="col">Date Submitted</th>'
-+				'<th scope="col">Grade</th>'
-+			'</tr>'
-+		'</thead>'
-+		'<tbody>'
-+		'</tbody>'
-+	'</table>';
-
-
-
-var inputGrade = 
-	'<div id="selectPage" class="card" style="width:20%;height:200px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
-	+    '<div class="card-body">'
-	+		'<form id="gradeForm">'
-	+		'<div class="form-group" style="text-align:center;font-size:1em">'
-	+                '<label for="rn">Reimburstment ID</label>'
-	+                '<input type="text" name="reimbID" id="rn">'
-	+        '</div>' 
-	+		'<div class="form-group" style="text-align:center;font-size:1em">'
-	+                '<label for="gr">Grade</label>'
-	+                '<input type="text" name="grade" id="gr">'
-	+        '</div>' 
-	+        '<button type="submit" id="gradeSubmit" class="btn btn-info float-right">Submit Grade</button>'
-	+		 '</form>'
-	+    '</div>'
-	+'</div>';	
-
-
-var approveDeny = 
-	'<div id="selectPage" class="card" style="width:20%;height:150px;margin:auto;position:absolute;top:0;bottom:0px;left:0;right:0;box-shadow:5px 5px 5px #929191" >'
-	+    '<div class="card-body">'
-	+		'<form id="appDen">'
-	+		'<div class="form-group" style="text-align:center;font-size:1em">'
-	+                '<label for="rn">Reimburstment ID</label>'
-	+                '<input type="text" name="reimbID" id="rn">'
-	+        '</div>' 
-	+        '<button type="submit" name="approve" id="approve" class="btn btn-success float-right">Approve</button>'
-	+        '<button type="submit" name="deny" id="deny" class="btn btn-danger float-right">Deny</button>'
-	+		 '</form>'
-	+    '</div>'
-	+'</div>';	
 
 $.fn.serializeObject = function () {
     var o = {};
@@ -352,7 +262,6 @@ $.fn.serializeObject = function () {
  //Opens Enter Grade page
  $(function() {
 	    $('#addGrade').click(function() {
-	    	console.log('grade clicked');
 	      $.ajax({
 	        type: "POST",
 	        url: "ViewServlet",
@@ -361,8 +270,7 @@ $.fn.serializeObject = function () {
 	            alert(thrownError);
 	          },
 	        success: function(data){
-	        	$('#selectPage').remove();
-	        	console.log(data);    	
+	        	$('#selectPage').remove();   	
 	        	$.each(data, function(i,element){
 	        		if(element.grade == "In Progress"){
 	        			$('#content').append(getGradeCard(
@@ -377,7 +285,11 @@ $.fn.serializeObject = function () {
 	        				element.feedback
 	        			));
 	        		}
-	        	});        	        	
+	        	});
+	        	if($('#content').children().length === 0){
+	        		alert("No action needed");
+	        	}
+
 	        }       
 	      });    
 	});
@@ -397,6 +309,9 @@ $.fn.serializeObject = function () {
 	        success: function(data){
 	        	alert("Grade Updated")
 	        	$('#gradeForm').parent().parent().remove();
+	        	if($('#content').children().length === 0){
+	        		alert("No action needed");
+	        	}
 	        },
 	        error: function (xhr, ajaxOptions, thrownError) {
 	            alert(xhr.status);
@@ -440,6 +355,9 @@ $.fn.serializeObject = function () {
 	        			element.justification);
 	        		$("#content").append(card); 		
 	        	});
+	        	if($('#content').children().length === 0){
+	        		alert("No action needed");
+	        	}
 	        }   
 	      });
 	      
@@ -457,7 +375,11 @@ $.fn.serializeObject = function () {
 	        url: "ApproveServlet",
 	        datatype: "json",
 	        data: JSON.stringify(approveUpdate),
-	        success: function(data){alert("Approved")},
+	        success: function(data){	        	
+	        	if($('#content').children().length === 0){
+        		alert("No action needed");
+	        	}
+	        },
 	        error: function (xhr, ajaxOptions, thrownError) {
 	            alert(xhr.status);
 	            alert(thrownError);
@@ -476,7 +398,10 @@ $.fn.serializeObject = function () {
 	        url: "DenyServlet",
 	        datatype: "json",
 	        data: JSON.stringify(denyUpdate),
-	        success: function(data){$(this).parent().parent().parent().remove();},
+	        success: function(data){$(this).parent().parent().parent().remove();
+        	if($('#content').children().length === 0){
+        		alert("No action needed");
+        	}},
 	        error: function (xhr, ajaxOptions, thrownError) {
 	            alert(xhr.status);
 	            alert(thrownError);
