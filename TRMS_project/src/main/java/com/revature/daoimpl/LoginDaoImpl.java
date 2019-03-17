@@ -15,14 +15,11 @@ public class LoginDaoImpl{
 		Connection conn = cf.getConnection();
 		
 		String sql = "SELECT * FROM TRMS_EMPLOYEE WHERE EMAIL='"+username+"' AND PASSWORD='"+password+"'";
-		System.out.println(sql);
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		int i=0;
 		while(rs.next()) {
-
 			i = rs.getInt("EMP_ID");
-			System.out.println(rs.getString("FIRST_NAME"));
 		}
 		return i;		
 	}

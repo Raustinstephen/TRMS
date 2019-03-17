@@ -5,15 +5,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
+import com.revature.beans.Deny;
 import com.revature.beans.Grade;
 import com.revature.util.ConnFactory;
 
 public class UpdateDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
-	//for the employee to update their grade after the event
 	public void updateGrade(Grade g) {
 		Connection conn = cf.getConnection();
 		String sql = "{ call UPDATE_GRADE(?,?)";
@@ -24,16 +23,8 @@ public class UpdateDaoImpl {
 			call.setString(2, g.getGrade());
 			call.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-	}
-	
-	//for the supervisor to approve or deny reimbursement and provide justification
-	public void approveDeny(int reimbID, int reimbStat) {
-		
+		}	
 	}
 
 	public void approve(int rid, Integer emp) {
@@ -64,14 +55,13 @@ public class UpdateDaoImpl {
 			ps1 = conn.prepareStatement(sql);
 			ps1.executeQuery();	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
 
-	public void deny(int rid) {
+	public void deny(Deny d) {
 		Connection conn = cf.getConnection();
-		String sql = "SELECT REIMBURST_STATUS FROM TRMS_REIMBURST WHERE REIMBURST_ID='"+rid+"'";
+		String sql = "SELECT REIMBURST_STATUS FROM TRMS_REIMBURST WHERE REIMBURST_ID='"+d.getRid()+"'";
 		int cur_status = 1;
 		PreparedStatement ps;
 		try {
@@ -81,12 +71,10 @@ public class UpdateDaoImpl {
 				cur_status = rs.getInt("REIMBURST_STATUS");
 				System.out.println(cur_status);
 			}
-			sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+4)+", NEXT_AUTHORIZE_ID=0";
+			sql = "UPDATE TRMS_REIMBURST SET REIMBURST_STATUS ="+(cur_status+4)+", NEXT_AUTHORIZE_ID=0 WHERE REIMBURST_ID = "+d.getRid();
 			ps = conn.prepareStatement(sql);
 			ps.executeQuery();
-			//ENTER UPDATE FOR JUSTIFICAITON??
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

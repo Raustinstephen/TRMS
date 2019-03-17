@@ -50,15 +50,13 @@ public class QueryDaoImpl {
 	public ArrayList<ReimbInfo> nextApprove(int empID) {
 		Connection conn = cf.getConnection();
 		ArrayList<ReimbInfo> ri = new ArrayList<ReimbInfo>();
-		
-			
 				PreparedStatement ps;
 				try {
-					String sql = 	"SELECT *"
-		+							"FROM ((TRMS_REIMBURST"
-		+							"INNER JOIN TRMS_EVENT ON TRMS_REIMBURST.EVENT_ID = TRMS_EVENT.EVENT_ID)"
-		+							"INNER JOIN TRMS_EMPLOYEE ON TRMS_REIMBURST.EMPLOYEE_ID = TRMS_EMPLOYEE.EMP_ID)"
-		+							"WHERE TRMS_REIMBURST.NEXT_AUTHORIZE_ID = "+empID;
+					String sql = 	"SELECT * "
+		+							" FROM ((TRMS_REIMBURST"
+		+							" INNER JOIN TRMS_EVENT ON TRMS_REIMBURST.EVENT_ID = TRMS_EVENT.EVENT_ID)"
+		+							" INNER JOIN TRMS_EMPLOYEE ON TRMS_REIMBURST.EMPLOYEE_ID = TRMS_EMPLOYEE.EMP_ID)"
+		+							" WHERE TRMS_REIMBURST.NEXT_AUTHORIZE_ID = "+empID;
 							
 						ps = conn.prepareStatement(sql);
 						ResultSet rs = ps.executeQuery();
@@ -66,13 +64,13 @@ public class QueryDaoImpl {
 							ReimbInfo rei = new ReimbInfo(
 									rs.getInt("REIMBURST_ID"),
 									rs.getString("R_TIMESTAMP"),
-									rs.getString("FIRSTNAME")+" "+rs.getString("LAST_NAME"),
+									rs.getString("FIRST_NAME")+" "+rs.getString("LAST_NAME"),
 									rs.getString("TITLE"),
 									rs.getInt("DEPT"),
 									rs.getString("EVENT_NAME"),
 									rs.getInt("EVENT_TYPE"),
 									rs.getInt("GRADE_FORMAT"),
-									rs.getString("LOCATION"),
+									rs.getString("EVENT_LOCATION"),
 									rs.getString("EVENT_DATE"),
 									rs.getString("GRADE"),
 									rs.getDouble("EVENT_COST"),

@@ -103,7 +103,8 @@
  +'</div>'	 
 ;
 function getViewCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,grade,feedback){
-	res =  '<div class="card" id="10083" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191" >'
+	res =  
+		 '<div class="card" style="width:80%;margin:0 auto;top:60px;margin-bottom:60px;box-shadow:5px 5px 5px #929191" >'
 +    '<div class="card-header">Reimburstment Request ID: '+rid+'<span style="float:right">Status: '+status+'</span></div>'
 +    '<div class="card-body">'
 +        '<div class="card-rows">'
@@ -153,37 +154,42 @@ function getGradeCard(rid,status,eventName,eventType,dateSubmitted,cost,reimb,gr
 	return res;
 }
 
-function getCard(reimbId,empId,empName,empTitle,eventName,eventType,eventCost,eventDate,eventTime,eventLocation,eventDesc){	
-res= '<div class="card" id="'+reimbId+'" style="width:80%;margin:0 auto;top:40px;box-shadow:5px 5px 5px #929191" >'
-+    '<div class="card-header">Reimburstment Request ID: '+reimbId+'</div>'
-+    '<div class="card-body">'
-+        '<div class="card-rows">'
-+            '<div class="card-columns">'
-+                '<div>Employee ID: '+empId+'</div>'
-+                '<div>Employee Name: '+empName+'</div>'
-+                '<div>Title: '+empTitle+'</div>'
-+            '</div>'
-+           '<div class="card-columns" style="margin-top:10px">'
-+                    '<div>Event Name: '+eventName+'</div>'
-+                    '<div>Event Type: '+eventType+'</div>'
-+                    '<div>Cost: $'+eventCost+'</div>'
-+                '</div>'
-+            '<div class="card-columns" style="margin-top:10px">'
-+                '<div>Event Date: '+eventDate+'</div>'
-+                '<div>Time: '+eventTime+'</div>'
-+                '<div>Location: '+eventLocation+'</div>'
-+            '</div>'
-+            '<div style="margin-top:10px">Description: '+eventDesc+'</div>'
+function getApproveDenyCard(rid,dateSubmitted,empName,empTitle,empDept,eventName,eventType,gradeFormat,location,date,grade,cost,estReimb,workMissed,justification){	
+res=                 
+'<div class="card" id="reimbId" style="width:80%;margin:0 auto;top:40px;margin-bottom:40px;box-shadow:5px 5px 5px #929191" >'
++'<div class="card-header">Reimburstment Request ID: '+rid+'<span style="float:right">Date Submitted: '+dateSubmitted+'</span></div>'
++'<div class="card-body">'
++    '<div class="card-rows">'
++        '<div class="card-columns">'
++            '<div>Employee Name: '+empName+'</div>'
++            '<div>Title: '+empTitle+'</div>'
++            '<div>Department: '+empDept+'</div>'
 +        '</div>'
-+    '</div>'
-+    '<div class="card-footer" style="margin-top:15px">'
-+        '<div style="float:right">'
-+            '<button class="btn btn-success" style="width:100px">Approve</button>'
-+            '<button class="btn btn-danger" style="width:100px;margin-left: 20px">Reject</button>'   
++       '<div class="card-columns" style="margin-top:10px">'
++                '<div>Event Name: '+eventName+'</div>'
++                '<div>Event Type: '+eventType+'</div>'
++                '<div>Grading Format: '+gradeFormat+'</div>'
++            '</div>'
++        '<div class="card-columns" style="margin-top:10px">'
++            '<div>Location: '+location+'</div>'
++            '<div>Date: '+date+'</div>'
++            '<div>Grade: '+grade+'</div>'
 +        '</div>'
++        '<div class="card-columns" style="margin-top:10px">'
++                '<div>Cost: $'+cost+'</div>'
++                '<div>Maximum Reimburstment: $'+estReimb+'</div>'
++                '<div>Hours of work missed: '+workMissed+'</div>'
++            '</div>'
++        '<div style="margin-top:10px">Justification: '+justification+'</div>'
 +    '</div>'
++'</div>'
++'<div class="card-footer" style="margin-top:15px">'
++    '<div style="float:right">'
++        '<button class="btn btn-success approve" value="'+rid+'" style="width:100px">Approve</button>'
++        '<button class="btn btn-danger reject" value="'+rid+'" style="width:100px;margin-left: 20px">Reject</button>'   
++    '</div>'
++'</div>'
 +'</div>';
-console.log(res);
 return res;
 }
 var table = 
@@ -374,7 +380,6 @@ $.fn.serializeObject = function () {
 	      e.preventDefault();
 	      var gradeUpdate = { "grade" 	: $('#gradeForm').find('input[name="grade"]').val(),
 	    		  			  "rid"		: $('#gradeForm').attr('value')};
-	      console.log(JSON.stringify(gradeUpdate));
 	      $.ajax({
 	        type: "POST",
 	        url: "GradeServlet",
@@ -405,32 +410,34 @@ $.fn.serializeObject = function () {
 	            alert(thrownError);
 	          },
 	        success: function(data){
-	        	console.log(data);
 	        	$("#selectPage").remove();   
 	        	var card;
 	        	$.each(data, function(i,element){
-	        		card= getCard(	element.reimbId,
-	        						element.firstName+" "+element.lastName,
-	        						element.eventName,
-	        						element.eventType,
-	        						element.eventCost,
-	        						element.eventDate,
-	        						element.eventTime,
-	        						element.location,
-	        						element.eventDesc);
-	        		$("$content").append(card); 		
+	        		card= getApproveDenyCard(	
+	        			element.rid,
+	        			element.dateSubmitted,
+	        			element.empName,
+	        			element.empTitle,
+	        			element.empDept,
+	        			element.eventName,
+	        			element.eventType,
+	        			element.gradeFormat,
+	        			element.location,
+	        			element.date,
+	        			element.grade,
+	        			element.cost,
+	        			element.estReimb,
+	        			element.justification);
+	        		$("#content").append(card); 		
 	        	});
-	        	
-	        	reimbId,empId,empName,empTitle,eventName,eventType,eventCost,eventDate,eventTime,eventLocation,eventDesc
-	        }
-	        
+	        }   
 	      });
 	      
 	    });
 	});
 
  
- 
+ //approve button handler
  $(function() {
 	    $('#appDen').on('submit','#appDen', function(e) {
 	      e.preventDefault();
@@ -451,19 +458,19 @@ $.fn.serializeObject = function () {
 	      
 	    });
 	});
- 
+ //deny button handler
  $(function() {
-	    $('#content').on('click','#deny', function(e) {
+	    $('#content').on('click','.reject', function(e) {
 	      e.preventDefault();
-	      console.log("in handler deny");
-	      var formData = $(this).serializeObject();
-	      console.log(JSON.stringify(formData));
+	      var denyUpdate = { 	"reason" 	: prompt("Enter your reason for rejection","No Feedback"),
+	    		  				"rid"		: $(this).attr('value')};
+	      console.log(JSON.stringify(denyUpdate));
 	      $.ajax({
 	        type: "POST",
 	        url: "DenyServlet",
 	        datatype: "json",
-	        data: JSON.stringify(formData),
-	        success: function(data){alert("Denied")},
+	        data: JSON.stringify(denyUpdate),
+	        success: function(data){$(this).parent().parent().parent().remove();},
 	        error: function (xhr, ajaxOptions, thrownError) {
 	            alert(xhr.status);
 	            alert(thrownError);
