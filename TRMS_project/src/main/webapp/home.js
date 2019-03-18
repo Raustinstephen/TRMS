@@ -306,9 +306,9 @@ $.fn.serializeObject = function () {
 	        url: "GradeServlet",
 	        datatype: "json",
 	        data: JSON.stringify(gradeUpdate),
-	        success: function(data){
+	        success: (data) =>{
 	        	alert("Grade Updated")
-	        	$('#gradeForm').parent().parent().remove();
+	        	$(this).closest('.card').remove();
 	        	if($('#content').children().length === 0){
 	        		alert("No action needed");
 	        	}
@@ -375,10 +375,10 @@ $.fn.serializeObject = function () {
 	        url: "ApproveServlet",
 	        datatype: "json",
 	        data: JSON.stringify(approveUpdate),
-	        success: function(data){
-	        	$("#appBut").parent().parent().remove();
+	        success: (data) => {
+	        	$(this).closest('.card').remove();
 	        	if($('#content').children().length === 0){
-        		alert("No action needed");
+	        		alert("No action needed");
 	        	}
 	        },
 	        error: function (xhr, ajaxOptions, thrownError) {
@@ -399,8 +399,8 @@ $.fn.serializeObject = function () {
 	        url: "DenyServlet",
 	        datatype: "json",
 	        data: JSON.stringify(denyUpdate),
-	        success: function(data){
-	        $("#appBut").parent().parent().remove();
+	        success: (data) =>{
+	        	$(this).closest('.card').remove();
         	if($('#content').children().length === 0){
         		alert("No action needed");
         	}},
