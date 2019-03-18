@@ -23,7 +23,6 @@ public class GradeServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in doPost grade");
 		UpdateDaoImpl udi = new UpdateDaoImpl();
 		ObjectMapper om = new ObjectMapper();
 		Grade g = om.readValue(request.getInputStream(),Grade.class);

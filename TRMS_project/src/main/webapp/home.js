@@ -165,7 +165,7 @@ res=
 +    '</div>'
 +'</div>'
 +'<div class="card-footer" style="margin-top:15px">'
-+    '<div style="float:right">'
++    '<div id="appBut" style="float:right">'
 +        '<button class="btn btn-success approve" value="'+rid+'" style="width:100px">Approve</button>'
 +        '<button class="btn btn-danger reject" value="'+rid+'" style="width:100px;margin-left: 20px">Reject</button>'   
 +    '</div>'
@@ -211,7 +211,7 @@ $.fn.serializeObject = function () {
         data: JSON.stringify(formData),
         success: function(data){
         	alert("Submission successful, remember to enter your grade upon completion");
-        	$("#contents").removeChild($("#contents").childNodes[0]);
+        	$("#myForm").parent().remove();
         	$("#contents").append(mainMenu);
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -375,7 +375,8 @@ $.fn.serializeObject = function () {
 	        url: "ApproveServlet",
 	        datatype: "json",
 	        data: JSON.stringify(approveUpdate),
-	        success: function(data){	        	
+	        success: function(data){
+	        	$("#appBut").parent().parent().remove();
 	        	if($('#content').children().length === 0){
         		alert("No action needed");
 	        	}
@@ -398,7 +399,8 @@ $.fn.serializeObject = function () {
 	        url: "DenyServlet",
 	        datatype: "json",
 	        data: JSON.stringify(denyUpdate),
-	        success: function(data){$(this).parent().parent().parent().remove();
+	        success: function(data){
+	        $("#appBut").parent().parent().remove();
         	if($('#content').children().length === 0){
         		alert("No action needed");
         	}},

@@ -53,7 +53,6 @@ public class SubmitFormDaoImpl {
 		call.setDouble(10, toBeAwarded);
 		call.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

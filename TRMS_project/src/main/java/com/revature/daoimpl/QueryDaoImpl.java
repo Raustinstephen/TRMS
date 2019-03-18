@@ -85,25 +85,4 @@ public class QueryDaoImpl {
 				}
 		return ri;	
 	}
-	
-	public double pendingAwards(int empID) {
-		Connection conn = cf.getConnection();
-			String sql = "SELECT EVENT_COST FROM TRMS_EVENT " +
-						"LEFT JOIN TRMS_REIMBURST\r\n" + 
-						"ON TRMS_EVENT.EVENT_ID=TRMS_REIMBURST.EVENT_ID\n"
-						+ "WHERE EMPLOYEE_ID="+empID;
-		Statement stmt;
-		double pendingAwards = 0;
-		try {
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				pendingAwards = pendingAwards + rs.getDouble("EVENT_COST");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return pendingAwards;
-	}
 }

@@ -194,12 +194,12 @@ INSERT INTO TRMS_DEPT values (400,'HR',400003);
 INSERT INTO TRMS_DEPT values (500,'General',500182);
 INSERT INTO TRMS_DEPT values (600,'Executive',600001);
 --DEPT HEADS################################################
-INSERT INTO TRMS_EMPLOYEE values (100157,'Regina','George','r.george@dseng.com','pinkwed','Office Manager',100,1,362.5);
-INSERT INTO TRMS_EMPLOYEE values (200007,'Theodore','Kord','t.kord@dseng.com','bluebeetle','IT Manager',200,1,175);
-INSERT INTO TRMS_EMPLOYEE values (300422,'Arthur','Andersen','a.andersen@dseng.com','cookthebooks','CFO',300,1,999.99);
-INSERT INTO TRMS_EMPLOYEE values (400003,'Pamela','Poovy','p.poovy@dseng.com','sploosh','HR Manager',400,1,350);
-INSERT INTO TRMS_EMPLOYEE values (500182,'Ronald','Swanson','r.swanson@dseng.com','NOTREAD','Director',500,1,17.76);
-INSERT INTO TRMS_EMPLOYEE values (600001,'Steve','Wozniak','s.wozniak@dseng.com','opensource','President',600,1,0);
+INSERT INTO TRMS_EMPLOYEE values (100157,'Regina','George','r.george@dseng.com','pinkwed','Office Manager',100,400032,362.5);
+INSERT INTO TRMS_EMPLOYEE values (200007,'Theodore','Kord','t.kord@dseng.com','bluebeetle','IT Manager',200,400032,175);
+INSERT INTO TRMS_EMPLOYEE values (300422,'Arthur','Andersen','a.andersen@dseng.com','cookthebooks','CFO',300,400032,999.99);
+INSERT INTO TRMS_EMPLOYEE values (400003,'Pamela','Poovy','p.poovy@dseng.com','sploosh','HR Manager',400,400032,350);
+INSERT INTO TRMS_EMPLOYEE values (500182,'Ronald','Swanson','r.swanson@dseng.com','NOTREAD','Director',500,400032,17.76);
+INSERT INTO TRMS_EMPLOYEE values (600001,'Steve','Wozniak','s.wozniak@dseng.com','opensource','President',600,400032,0);
 --founder/CEO
 INSERT INTO TRMS_EMPLOYEE values (1,'Bruce','Wayne','darkknight@dseng.com','IMBATMAN','CEO',600,1,0);
 --Clerical
